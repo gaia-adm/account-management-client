@@ -1,0 +1,5 @@
+<ul ng-repeat="account in accounts">
+  <li>{{::account.name}}</li>
+  <li>{{::account.description}}</li>
+  <li ng-if="account.enabled">Enabled</li>
+</ul>
