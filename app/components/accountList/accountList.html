@@ -1,5 +1,14 @@
-<ul ng-repeat="account in accounts">
-  <li>{{::account.name}}</li>
-  <li>{{::account.description}}</li>
-  <li ng-if="account.enabled">Enabled</li>
-</ul>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Enabled</th>
+    </tr>
+    <tr ng-repeat="account in accounts">
+      <td><a href="#" ui-sref="authenticated.accounts.detail({accountId: account.id})">{{::account.name}}</a></td>
+      <td>{{::account.description}}</td>
+      <td ng-if="account.enabled">Enabled</td>
+    </tr>
+  </table>
+</div>
