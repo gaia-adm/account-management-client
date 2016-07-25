@@ -12,8 +12,21 @@
   <base href="/">
 </head>
 <body ng-controller="AppCtrl">
-  <nav ui-view="nav"></nav>
-  <div ui-view="main"></div>
-  <footer ui-view="footer"></footer>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid" ui-view="nav"></div>
+  </nav>
+
+
+
+  <div class="container-fluid">
+    <div class="row" ui-view="main">
+      <!--Body content-->
+    </div>
+    <footer class="row" ui-view="footer"></footer>
+  </div>
+
+
+
+
 </body>
 </html>

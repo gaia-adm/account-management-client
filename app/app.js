@@ -1,8 +1,11 @@
 import angular from 'angular';
+import ngAnimate from 'angular-animate';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
+import ngTouch from 'angular-touch';
 import toastr from 'angular-toastr';
 import uiRouter from 'angular-ui-router';
+import uiBootstrap from 'angular-ui-bootstrap';
 
 import AccountResource from './services/accounts';
 import AuthServices from './services/auth';
@@ -17,7 +20,7 @@ import Login from './login';
 import accountListDirective from './components/accountList';
 import navDirective from './components/nav';
 
-import '../style/app.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'angular-toastr/dist/angular-toastr.min.css';
 
 let app = () => {
@@ -51,9 +54,12 @@ class AppCtrl {
 const MODULE_NAME = 'app';
 
 angular.module(MODULE_NAME, [
+  ngAnimate,
   ngCookies,
   ngResource,
+  ngTouch,
   toastr,
+  uiBootstrap,
   uiRouter,
 
   //Screens
