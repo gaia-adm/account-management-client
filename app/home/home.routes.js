@@ -1,17 +1,10 @@
 export default function routes($stateProvider) {
   $stateProvider
-    .state('home', {
+    .state('authenticated.home', {
       url: '/home',
       authRequired: true,
-      views: {
-        nav: {
-          template: '<div nav></div>'
-        },
-        main: {
-          template: require('./home.html'),
-          controller: 'HomeController',
-          controllerAs: 'home'
-        }
-      }
+      template: require('./home.html'),
+      controller: 'HomeController',
+      controllerAs: 'home'
     });
 }
