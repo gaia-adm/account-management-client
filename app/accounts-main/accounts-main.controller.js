@@ -1,4 +1,4 @@
-export default class AccountListController {
+export default class AccountsMainController {
   constructor(AccountResource) {
     this.list = AccountResource.query();
   }

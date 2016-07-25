@@ -10,7 +10,7 @@ import UserResource from './services/users';
 
 import routing from './app.routes';
 
-import AccountList from './accountList';
+import AccountsMain from './accounts-main';
 import Home from './home';
 import Login from './login';
 
@@ -57,7 +57,7 @@ angular.module(MODULE_NAME, [
   uiRouter,
 
   //Screens
-  AccountList,
+  AccountsMain,
   Home,
   Login,
 
