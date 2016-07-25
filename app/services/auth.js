@@ -1,6 +1,6 @@
 "use strict";
 
-const AuthService = function($window, $q, $state, AuthToken) {
+const AuthService = function($window, $q, $state, AuthUser) {
   this.logout = function() {
     let gapi = $window.gapi;
     if(gapi.auth2) {
@@ -18,27 +18,32 @@ const AuthService = function($window, $q, $state, AuthToken) {
   this.googleSignout = function(authInstance) {
     authInstance.signOut().then(function () {
       console.log('User signed out.');
-      AuthToken.invalidate();
+      AuthUser.invalidate();
       $state.go('login');
     });
   };
 };
 
-const AuthToken = function($cookies) {
-  this.token = null;
-  this.set = function(token) {
-    this.token = token;
-    $cookies.put('token', token);
+const AuthUser = function($cookies) {
+  this.data = null;
+  this.set = function(data) {
+    this.data = data;
+    $cookies.put('user', JSON.stringify(data));
   };
   this.get = function() {
-    if(this.token !== null) {
-      return this.token;
+    if(this.data !== null) {
+      return this.data;
     }
-    return $cookies.get('token');
+    let userCookie = $cookies.get('user');
+    if(userCookie) {
+      this.data = JSON.parse(userCookie);
+      return this.data;
+    }
+    return null;
   };
   this.invalidate = function() {
-    $cookies.remove('token');
-    this.token = null;
+    $cookies.remove('user');
+    this.data = null;
   }
 };
 
@@ -60,25 +65,28 @@ const AuthRole = function($cookies) {
   }
 };
 
-const AuthInterceptor = function(AuthToken) {
-  return {
-    'request': function(config) {
-      var token = AuthToken.get();
-      if (token) {
-        config.headers['x-access-token'] = token;
-      };
-      return config;
-    }
-  };
-};
+// const AuthInterceptor = function(AuthToken) {
+//   return {
+//     'request': function(config) {
+      // var token = AuthToken.get();
+      // if (token) {
+      //   config.headers['x-access-token'] = token;
+      // };
+      // return config;
+      // config.headers['with-credentials'] = true;
+      // return config;
+    // }
+  // };
+// };
 
 export default angular.module('services.auth', [])
   .service('AuthService', AuthService)
-  .service('AuthToken', AuthToken)
+  .service('AuthUser', AuthUser)
   .service('AuthRole', AuthRole)
-  .factory('AuthInterceptor', AuthInterceptor)
+  // .factory('AuthInterceptor', AuthInterceptor)
   .config(function($httpProvider) {
-    $httpProvider.interceptors.push('AuthInterceptor');
+    $httpProvider.defaults.withCredentials = true;
+    // $httpProvider.interceptors.push('AuthInterceptor');
   })
   .run(function($window) {
 

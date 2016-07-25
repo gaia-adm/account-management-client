@@ -27,7 +27,7 @@ export default class LoginController {
       })
       .catch(function(error) {
         console.error('bad luck', error);
-        _toastr(error);
+        _toastr.error(error);
       });
   };
 

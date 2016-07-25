@@ -29,7 +29,7 @@ let app = () => {
 };
 
 class AppCtrl {
-  constructor($transitions, $state, toastr, AuthToken) {
+  constructor($transitions, $state, toastr, AuthUser) {
 
     let requiresAuthCriteria = {
       to: (state) => !!state.authRequired
@@ -37,10 +37,8 @@ class AppCtrl {
 
     $transitions.onBefore( requiresAuthCriteria, function(transition, state) {
 
-      let token = AuthToken.get();
-      console.info('state', state);
-      console.info('token', token);
-      if(token) {
+      let user = AuthUser.get();
+      if(user) {
         return true;
       } else {
         toastr.error('Not authorized', 'ERROR');
@@ -48,8 +46,6 @@ class AppCtrl {
       }
     });
   }
-
-
 }
 
 const MODULE_NAME = 'app';
