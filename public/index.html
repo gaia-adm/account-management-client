@@ -5,10 +5,15 @@
   <title>Angular App</title>
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-signin-client_id" content="632505077105-r5u4sst6flni4k6a6sud8gb4g9tf0r58.apps.googleusercontent.com">
+
+  <script src="https://apis.google.com/js/platform.js"></script>
 
   <base href="/">
 </head>
-<body>
-  <ui-view></ui-view>
+<body ng-controller="AppCtrl">
+  <nav ui-view="nav"></nav>
+  <div ui-view="main"></div>
+  <footer ui-view="footer"></footer>
 </body>
 </html>

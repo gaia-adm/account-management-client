@@ -1,15 +1,24 @@
 import angular from 'angular';
+import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
+import toastr from 'angular-toastr';
 import uiRouter from 'angular-ui-router';
 
 import AccountResource from './services/accounts';
+import AuthServices from './services/auth';
 import UserResource from './services/users';
 
+import routing from './app.routes';
+
 import AccountList from './accountList';
+import Home from './home';
+import Login from './login';
 
 import accountListDirective from './components/accountList';
+import navDirective from './components/nav';
 
 import '../style/app.css';
+import 'angular-toastr/dist/angular-toastr.min.css';
 
 let app = () => {
   return {
@@ -20,29 +29,52 @@ let app = () => {
 };
 
 class AppCtrl {
-  constructor(AccountResource) {
-    // var a = new AccountResource();
-    // a.$save();
-    AccountResource.query();
+  constructor($transitions, $state, toastr, AuthToken) {
+
+    let requiresAuthCriteria = {
+      to: (state) => !!state.authRequired
+    };
+
+    $transitions.onBefore( requiresAuthCriteria, function(transition, state) {
+
+      let token = AuthToken.get();
+      console.info('state', state);
+      console.info('token', token);
+      if(token) {
+        return true;
+      } else {
+        toastr.error('Not authorized', 'ERROR');
+        $state.go('login');
+      }
+    });
   }
+
+
 }
 
 const MODULE_NAME = 'app';
 
 angular.module(MODULE_NAME, [
+  ngCookies,
   ngResource,
+  toastr,
   uiRouter,
 
   //Screens
   AccountList,
+  Home,
+  Login,
 
   //services
   AccountResource,
+  AuthServices,
   UserResource,
 
   //directive
-  accountListDirective
+  accountListDirective,
+  navDirective
 ])
+  .config(routing)
   .directive('app', app)
   .controller('AppCtrl', AppCtrl);
 

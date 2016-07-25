@@ -1,16 +1,16 @@
 export default function routes($stateProvider) {
   $stateProvider
-    .state('accounts', {
-      url: '/accounts',
+    .state('home', {
+      url: '/home',
       authRequired: true,
       views: {
         nav: {
           template: '<div nav></div>'
         },
         main: {
-          template: require('./accountList.html'),
-          controller: 'AccountListController',
-          controllerAs: 'accounts'
+          template: require('./home.html'),
+          controller: 'HomeController',
+          controllerAs: 'home'
         }
       }
     });
