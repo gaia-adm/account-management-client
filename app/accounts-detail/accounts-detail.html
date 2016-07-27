@@ -1,0 +1,39 @@
+<ng-form name="details">
+  <div class="form-group">
+    <label for="name">Account name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      placeholder="My Account"
+      ng-model="accountDetails.account.name"
+      ng-required="true">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input
+      type="text"
+      class="form-control"
+      id="description"
+      placeholder="Description of my account"
+      ng-model="accountDetails.account.description"
+      ng-required="true">
+  </div>
+
+  <label for="users">Users</label>
+  <div id="users" user-list users="accountDetails.account.users"></div>
+
+  <label for="invitations">Invitations</label>
+  <div id="invitations" user-list users="accountDetails.account.users"></div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <button type="button" class="btn btn-default btn-block" ui-sref="authenticated.accounts.main">Cancel</button>
+    </div>
+    <div class="col-xs-6">
+      <button type="submit" ng-disabled="!details.$valid" class="btn btn-primary btn-block" ng-click="accountDetails.saveChanges(accountDetails.account)">Save Changes</button>
+    </div>
+  </div>
+  <button type="button" class="btn btn-danger btn-block">Disable Account</button>
+
+</ng-form>

@@ -14,10 +14,12 @@ import UserResource from './services/users';
 import routing from './app.routes';
 
 import AccountsMain from './accounts-main';
+import AccountsDetail from './accounts-detail';
 import Home from './home';
 import Login from './login';
 
 import accountListDirective from './components/accountList';
+import userListDirective from './components/userList';
 import navDirective from './components/nav';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -63,6 +65,7 @@ angular.module(MODULE_NAME, [
   uiRouter,
 
   //Screens
+  AccountsDetail,
   AccountsMain,
   Home,
   Login,
@@ -74,6 +77,7 @@ angular.module(MODULE_NAME, [
 
   //directive
   accountListDirective,
+  userListDirective,
   navDirective
 ])
   .config(routing)
