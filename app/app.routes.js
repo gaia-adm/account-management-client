@@ -14,4 +14,7 @@ export default function routing($locationProvider, $urlRouterProvider, $statePro
     }
   });
 
+  $resourceProvider.defaults.actions.update = {
+    method: 'PUT'
+  };
 }
