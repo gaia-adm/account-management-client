@@ -8,7 +8,14 @@
     <tr ng-repeat="user in users">
       <td>{{::user.firstName}}</td>
       <td>{{::user.lastName}}</td>
-      <td ng-repeat="role in roles"><span ng-if="user.role_ids.indexOf(role.id) !== -1">X</span></td>
+      <td ng-repeat="role in roles">
+        <input
+          type="checkbox"
+          name="roles"
+          ng-model="user.radio[role.id]"
+          ng-init="user.radio[role.id] = (user.role_ids.indexOf(role.id) !== -1)"
+          ng-change="onRoleChange(user)"/>
+      </td>
     </tr>
   </table>
 </div>

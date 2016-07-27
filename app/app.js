@@ -19,11 +19,13 @@ import Home from './home';
 import Login from './login';
 
 import accountListDirective from './components/accountList';
+import inviteUserDirective from './components/inviteUser';
 import userListDirective from './components/userList';
 import navDirective from './components/nav';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'angular-toastr/dist/angular-toastr.min.css';
+import '../style/app.css';
 
 let app = () => {
   return {
@@ -77,6 +79,7 @@ angular.module(MODULE_NAME, [
 
   //directive
   accountListDirective,
+  inviteUserDirective,
   userListDirective,
   navDirective
 ])

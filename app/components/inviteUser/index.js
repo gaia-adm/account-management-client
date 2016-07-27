@@ -3,14 +3,14 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-function accountList($q) {
+function inviteUser($q) {
   return {
     restrict: 'A',
     replace: true,
     scope: {
       accounts: '='
     },
-    template: require('./accountList.html'),
+    template: require('./inviteUser.html'),
     controller: function($scope) {
       let _applyFilters = function(accounts) {
         if($scope.showDisabled) return accounts;
@@ -31,6 +31,6 @@ function accountList($q) {
   }
 }
 
-export default angular.module('directives.accountList', [])
-  .directive('accountList', accountList)
+export default angular.module('directives.inviteUser', [])
+  .directive('inviteUser', inviteUser)
   .name;

@@ -1,6 +1,7 @@
 "use strict";
 
 import angular from 'angular';
+import _ from 'lodash';
 import roles from '../../../../config/roles';
 
 function userList() {
@@ -12,8 +13,17 @@ function userList() {
     },
     template: require('./userList.html'),
     controller: function($scope) {
-      console.info('roles', roles);
       $scope.roles = roles;
+      $scope.radio = {};
+      $scope.onRoleChange = function(user) {
+        //map the radio object to an array of allowed role ids
+        user.role_ids = _.reduce(user.radio, function(result, value, key) {
+          if(value === true) {
+            result.push(Number(key));
+          }
+          return result;
+        }, []);
+      }
     }
   }
 }

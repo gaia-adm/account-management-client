@@ -26,6 +26,8 @@
   <label for="invitations">Invitations</label>
   <div id="invitations" user-list users="accountDetails.account.users"></div>
 
+  <button type="button" class="btn btn-default btn-block" ng-click="accountDetails.inviteUser(accountDetails.account)">Invite User</button>
+  <div>&nbsp;</div>
   <div class="row">
     <div class="col-xs-6">
       <button type="button" class="btn btn-default btn-block" ui-sref="authenticated.accounts.main">Cancel</button>
@@ -34,6 +36,8 @@
       <button type="submit" ng-disabled="!details.$valid" class="btn btn-primary btn-block" ng-click="accountDetails.saveChanges(accountDetails.account)">Save Changes</button>
     </div>
   </div>
-  <button type="button" class="btn btn-danger btn-block">Disable Account</button>
+  <div>&nbsp;</div>
+  <button ng-if="accountDetails.account.enabled"  type="button" class="btn btn-danger btn-block" ng-click="accountDetails.disableAccount(accountDetails.account)">Disable Account</button>
+  <button ng-if="!accountDetails.account.enabled" type="button" class="btn btn-success btn-block" ng-click="accountDetails.reenableAccount(accountDetails.account)">Reenable Account</button>
 
 </ng-form>
