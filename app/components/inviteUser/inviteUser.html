@@ -1,19 +1,39 @@
 <div>
-  <div>
-    <button ng-if="showDisabled" type="button" class="btn btn-default btn-block" ng-click="toggleShowDisabled()">Hide Disabled</button>
-    <button ng-if="!showDisabled" type="button" class="btn btn-info btn-block" ng-click="toggleShowDisabled()">Show Disabled</button>
-  </div>
-
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-      <tr ng-repeat="account in filteredAccounts" ng-class="{disabled:!account.enabled}">
-        <td><a href="#" ui-sref="authenticated.accounts.detail({accountId: account.id})">{{::account.name}}</a> <i ng-if="!account.enabled">(disabled)</i></td>
-        <td>{{::account.description}}</td>
-      </tr>
-    </table>
-  </div>
+  <ng-form name="accountInvitation">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Invited user's email address"
+        ng-model="invitation.email"
+        ng-required="true">
+        <div ng-messages="accountInvitation.email.$error" ng-show="accountInvitation.email.$dirty">
+          <div ng-message="required">required</div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="permissions">Permissions</label>
+      <div id="permissions">
+        <div ng-repeat="role in roles">
+          <input
+            type="checkbox"
+            name="roles"
+            checklist-model="invitation.role_ids"
+            checklist-value="role.id" />
+          {{::role.name}}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <button type="button" class="btn btn-default btn-block" ng-click="cancel()">Cancel</button>
+      </div>
+      <div class="col-xs-6">
+        <button ng-disabled="!accountInvitation.$valid || invitation.role_ids.length === 0" type="submit" class="btn btn-primary btn-block" ng-click="sendInvite()">Send Invitation</button>
+      </div>
+    </div>
+  </ng-form>
 </div>

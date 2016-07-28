@@ -1,14 +1,45 @@
-let _toastr, _state;
+"use strict";
+import _ from 'lodash';
+
+let _toastr, _state, _uibModal;
 
 export default class AccountsDetailController {
 
-  constructor($stateParams, AccountResource, toastr, $state) {
+  constructor($stateParams, AccountResource, toastr, $state, $uibModal) {
+    let _self = this;
     _toastr = toastr;
     _state = $state;
+    _uibModal = $uibModal;
     let id = $stateParams.accountId;
     this.account = AccountResource.get({id: id});
-    this.inviteUserModalConfig = {};
+    this.inviteUserModalConfig = {
+      backdrop: true,
+      controller: function($scope, $uibModalInstance) {
+        $scope.onInvitationCancelled = function() {
+          $uibModalInstance.close();
+          _self.onInvitationCancelled();
+        };
+        $scope.onInvitationSuccess = function(invitation) {
+          console.info('on success', invitation);
+          $uibModalInstance.close();
+          _self.onInvitationSuccess(invitation);
+        };
+        $scope.onInvitationFailure = function() {
+          $uibModalInstance.close();
+          _self.onInvitationFailure();
+        };
+      },
+      template: '<div ' +
+      'invite-user ' +
+      'account-id="' + id + '" ' +
+      'on-success="onInvitationSuccess(invitation)" ' +
+      'on-failure="onInvitationFailure()" ' +
+      'on-cancel="onInvitationCancelled()" ' +
+      '/>'
+    };
   }
+
+  //ACCOUNT
 
   saveChanges(account) {
     if(account.users.length === 0) {
@@ -23,30 +54,37 @@ export default class AccountsDetailController {
   }
 
   disableAccount(account) {
-    if(account.users.length === 0) {
-      delete(account.users);
-    }
-
     account.enabled = false;
-    account.$update().then(function(account) {
-      _toastr.success('Account disabled.');
-      _state.go('authenticated.accounts.main');
-    }).catch(function(e) {
-      _toastr.error(e);
-    });
+    this.saveChanges(account);
   }
 
   reenableAccount(account) {
-    if(account.users.length === 0) {
-      delete(account.users);
-    }
-
     account.enabled = true;
-    account.$update().then(function(account) {
-      _toastr.success('Account reenabled.');
-      _state.go('authenticated.accounts.main');
-    }).catch(function(e) {
-      _toastr.error(e);
-    });
+    this.saveChanges(account);
   }
+
+  //INVITATION
+
+  inviteUser(account) {
+    this.inviteUserModalInstance = _uibModal.open(this.inviteUserModalConfig);
+  }
+
+  onInvitationSuccess(invitation) {
+    console.log('invitation success');
+    console.info(invitation);
+    this.account.invitations.push(invitation);
+    console.info(this.account.invitations);
+  }
+
+
+  onInvitationFailure() {
+    console.log('invitation failure');
+  }
+
+
+  onInvitationCancelled() {
+    console.log('invitation cancelled');
+  }
+
+
 }

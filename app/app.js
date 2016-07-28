@@ -1,11 +1,13 @@
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import ngCookies from 'angular-cookies';
+import ngMessages from 'angular-messages';
 import ngResource from 'angular-resource';
 import ngTouch from 'angular-touch';
 import toastr from 'angular-toastr';
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
+import checklistModel from 'checklist-model';
 
 import AccountResource from './services/accounts';
 import AuthServices from './services/auth';
@@ -19,6 +21,7 @@ import Home from './home';
 import Login from './login';
 
 import accountListDirective from './components/accountList';
+import invitationListDirective from './components/invitationList';
 import inviteUserDirective from './components/inviteUser';
 import userListDirective from './components/userList';
 import navDirective from './components/nav';
@@ -58,13 +61,18 @@ class AppCtrl {
 const MODULE_NAME = 'app';
 
 angular.module(MODULE_NAME, [
+  //Angular
   ngAnimate,
   ngCookies,
+  ngMessages,
   ngResource,
   ngTouch,
+
+  //Vendor
   toastr,
   uiBootstrap,
   uiRouter,
+  checklistModel,
 
   //Screens
   AccountsDetail,
@@ -79,6 +87,7 @@ angular.module(MODULE_NAME, [
 
   //directive
   accountListDirective,
+  invitationListDirective,
   inviteUserDirective,
   userListDirective,
   navDirective

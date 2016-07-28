@@ -2,30 +2,48 @@
 
 import angular from 'angular';
 import _ from 'lodash';
+import roles from '../../../../config/roles';
 
-function inviteUser($q) {
+function inviteUser(AccountResource) {
   return {
     restrict: 'A',
     replace: true,
     scope: {
-      accounts: '='
+      accountId: '@',
+      onSuccess: '&?',
+      onFailure: '&?',
+      onCancel: '&?'
     },
     template: require('./inviteUser.html'),
     controller: function($scope) {
-      let _applyFilters = function(accounts) {
-        if($scope.showDisabled) return accounts;
-        return _.filter(accounts, {enabled: true});
+      let emptyFn = function(){};
+      if(typeof $scope.onSuccess != 'function') $scope.onSuccess = emptyFn;
+      if(typeof $scope.onFailure != 'function') $scope.onFailure = emptyFn;
+      if(typeof $scope.onCancel != 'function') $scope.onCancel = emptyFn;
+
+      $scope.roles = roles;
+
+      $scope.invitation = {
+        email: null,
+        role_ids: [],
+        id: $scope.accountId,
       };
 
-      $scope.$watch('accounts', function(accounts) {
-        $q.when(accounts.$promise, function() {
-          $scope.filteredAccounts = _applyFilters(accounts);
-        });
-      });
+      $scope.sendInvite = function() {
+        console.log('submit', $scope.invitation);
 
-      $scope.toggleShowDisabled = function() {
-        $scope.showDisabled = !$scope.showDisabled;
-        $scope.filteredAccounts = _applyFilters($scope.accounts);
+        AccountResource.invite($scope.invitation)
+          .then(function success(result) {
+            console.info('result', result.data);
+            $scope.onSuccess({invitation: result.data});
+          })
+          .catch(function failure(e) {
+            $scope.onFailure(e);
+          })
+      };
+
+      $scope.cancel = function() {
+        $scope.onCancel();
       };
     }
   }

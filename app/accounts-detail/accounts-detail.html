@@ -23,10 +23,10 @@
   <label for="users">Users</label>
   <div id="users" user-list users="accountDetails.account.users"></div>
 
-  <label for="invitations">Invitations</label>
-  <div id="invitations" user-list users="accountDetails.account.users"></div>
+  <label for="invitations">Invitations <button type="button" class="btn btn-default btn-sm" ng-click="accountDetails.inviteUser(accountDetails.account)">Invite User</button></label>
+  <div id="invitations" invitation-list invitations="accountDetails.account.invitations"></div>
 
-  <button type="button" class="btn btn-default btn-block" ng-click="accountDetails.inviteUser(accountDetails.account)">Invite User</button>
+
   <div>&nbsp;</div>
   <div class="row">
     <div class="col-xs-6">

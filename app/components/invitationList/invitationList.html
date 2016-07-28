@@ -1,0 +1,16 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th>Email</th>
+      <th>Date Invited</th>
+      <th>Invited Roles</th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="invitation in invitations">
+      <td>{{::invitation.email}}</td>
+      <td>{{::invitation.date_invited | date:'short' }}</td>
+      <td>{{getRoleNames(invitation.invited_role_ids)}}</td>
+      <td><a href="#" ng-click="revokeInvitation(invitation)">Revoke</a></td>
+    </tr>
+  </table>
+</div>
