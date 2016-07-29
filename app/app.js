@@ -15,10 +15,11 @@ import UserResource from './services/users';
 
 import routing from './app.routes';
 
+import Login from './login';
+import Home from './home';
 import AccountsMain from './accounts-main';
 import AccountsDetail from './accounts-detail';
-import Home from './home';
-import Login from './login';
+import UsersMain from './users-main';
 
 import accountFormDirective from './components/accountForm';
 import accountListDirective from './components/accountList';
@@ -76,10 +77,11 @@ angular.module(MODULE_NAME, [
   checklistModel,
 
   //Screens
-  AccountsDetail,
-  AccountsMain,
-  Home,
   Login,
+  Home,
+  AccountsMain,
+  AccountsDetail,
+  UsersMain,
 
   //services
   AccountResource,

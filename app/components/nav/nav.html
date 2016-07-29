@@ -11,6 +11,7 @@
   <ul class="nav navbar-nav">
     <li ui-sref-active="active"><a ui-sref="authenticated.home" >Home</a></li>
     <li class="{{('authenticated.accounts'  | includedByState) ? 'active' : '' }}"><a ui-sref="authenticated.accounts.main">Accounts</a></li>
+    <li class="{{('authenticated.users'     | includedByState) ? 'active' : '' }}"><a ui-sref="authenticated.users.main">Users</a></li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <li> <a href="#" ng-click="logout()">Log Out</a></li>

@@ -4,12 +4,15 @@ import angular from 'angular';
 import _ from 'lodash';
 import roles from '../../../../config/roles';
 
+import './user-list.css';
+
 function userList() {
   return {
     restrict: 'A',
     replace: true,
     scope: {
-      users: '='
+      users: '=',
+      mode: '@'
     },
     template: require('./userList.html'),
     controller: function($scope) {
