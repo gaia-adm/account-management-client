@@ -17,7 +17,7 @@ function accountList($q) {
         return _.filter(accounts, {enabled: true});
       };
 
-      $scope.$watch('accounts', function(accounts) {
+      $scope.$watchCollection('accounts', function(accounts) {
         $q.when(accounts.$promise, function() {
           $scope.filteredAccounts = _applyFilters(accounts);
         });

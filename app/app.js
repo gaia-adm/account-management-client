@@ -20,6 +20,7 @@ import AccountsDetail from './accounts-detail';
 import Home from './home';
 import Login from './login';
 
+import accountFormDirective from './components/accountForm';
 import accountListDirective from './components/accountList';
 import invitationListDirective from './components/invitationList';
 import inviteUserDirective from './components/inviteUser';
@@ -86,6 +87,7 @@ angular.module(MODULE_NAME, [
   UserResource,
 
   //directive
+  accountFormDirective,
   accountListDirective,
   invitationListDirective,
   inviteUserDirective,

@@ -1,19 +1,17 @@
-<div>
-  <div>
-    <button ng-if="showDisabled" type="button" class="btn btn-default btn-block" ng-click="toggleShowDisabled()">Hide Disabled</button>
-    <button ng-if="!showDisabled" type="button" class="btn btn-info btn-block" ng-click="toggleShowDisabled()">Show Disabled</button>
-  </div>
-
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-      <tr ng-repeat="account in filteredAccounts" ng-class="{disabled:!account.enabled}">
-        <td><a href="#" ui-sref="authenticated.accounts.detail({accountId: account.id})">{{::account.name}}</a> <i ng-if="!account.enabled">(disabled)</i></td>
-        <td>{{::account.description}}</td>
-      </tr>
-    </table>
-  </div>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <caption>
+      ACCOUNT LIST
+      <button ng-if="showDisabled" type="button" class="pull-right btn btn-default btn-xs" ng-click="toggleShowDisabled()">Hide Disabled</button>
+      <button ng-if="!showDisabled" type="button" class="pull-right btn btn-info btn-xs" ng-click="toggleShowDisabled()">Show Disabled</button>
+    </caption>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+    <tr ng-repeat="account in filteredAccounts" ng-class="{disabled:!account.enabled}">
+      <td><a href="#" ui-sref="authenticated.accounts.detail({accountId: account.id})">{{::account.name}}</a> <i ng-if="!account.enabled">(disabled)</i></td>
+      <td>{{::account.description}}</td>
+    </tr>
+  </table>
 </div>
