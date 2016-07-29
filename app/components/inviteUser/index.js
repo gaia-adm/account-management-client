@@ -29,33 +29,21 @@ function inviteUser(AccountResource) {
         id: $scope.accountId,
       };
 
-<<<<<<< Updated upstream
-      $scope.sendInvite = function() {
-        console.log('submit', $scope.invitation);
-
-=======
-<<<<<<< Updated upstream
       $scope.$watch('accounts', function(accounts) {
         $q.when(accounts.$promise, function() {
           $scope.filteredAccounts = _applyFilters(accounts);
         });
       });
-=======
+
       $scope.sendInvite = function() {
->>>>>>> Stashed changes
         AccountResource.invite($scope.invitation)
           .then(function success(result) {
-            console.info('result', result.data);
             $scope.onSuccess({invitation: result.data});
           })
           .catch(function failure(e) {
             $scope.onFailure(e);
           })
       };
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
       $scope.cancel = function() {
         $scope.onCancel();
