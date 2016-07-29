@@ -29,12 +29,6 @@ function inviteUser(AccountResource) {
         id: $scope.accountId,
       };
 
-      $scope.$watch('accounts', function(accounts) {
-        $q.when(accounts.$promise, function() {
-          $scope.filteredAccounts = _applyFilters(accounts);
-        });
-      });
-
       $scope.sendInvite = function() {
         AccountResource.invite($scope.invitation)
           .then(function success(result) {

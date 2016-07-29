@@ -1,12 +1,13 @@
 "use strict";
 
-let _uibModal;
+let _toastr, _uibModal;
 
 export default class UsersMainController {
-  constructor(UserResource, $uibModal) {
+  constructor(UserResource, $uibModal, toastr) {
     this.list = UserResource.query();
     let _self = this;
     _uibModal = $uibModal;
+    _toastr   = toastr;
 
     this.createUserModalConfig = {
       backdrop: true,
@@ -20,14 +21,13 @@ export default class UsersMainController {
           $uibModalInstance.close();
           _self.onUserCreationSuccess(user);
         };
-        $scope.onUserCreationFailure = function() {
-          $uibModalInstance.close();
-          _self.onUserCreationFailure();
+        $scope.onUserCreationFailure = function(error) {
+          _self.onUserCreationFailure(error);
         };
       },
-      template: '<div account-form ' +
+      template: '<div user-form ' +
       'on-success="onUserCreationSuccess(user)" ' +
-      'on-failure="onUserCreationFailure()" ' +
+      'on-failure="onUserCreationFailure(error)" ' +
       'on-cancel="onUserCreationCancelled()" ' +
       '/>'
     };
@@ -42,8 +42,9 @@ export default class UsersMainController {
   }
 
 
-  onUserCreationFailure() {
-    console.log('user creation failure');
+  onUserCreationFailure(error) {
+    console.log('user creation failure', error);
+    _toastr.error(error.message, 'Error');
   }
 
 

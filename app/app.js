@@ -25,11 +25,12 @@ import accountFormDirective from './components/accountForm';
 import accountListDirective from './components/accountList';
 import invitationListDirective from './components/invitationList';
 import inviteUserDirective from './components/inviteUser';
+import userFormDirective from './components/userForm';
 import userListDirective from './components/userList';
 import navDirective from './components/nav';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'angular-toastr/dist/angular-toastr.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'angular-toastr/dist/angular-toastr.css';
 import '../style/app.css';
 
 let app = () => {
@@ -93,6 +94,7 @@ angular.module(MODULE_NAME, [
   accountListDirective,
   invitationListDirective,
   inviteUserDirective,
+  userFormDirective,
   userListDirective,
   navDirective
 ])

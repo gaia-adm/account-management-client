@@ -24,8 +24,8 @@
   <div id="users" user-list users="accountDetails.account.users"></div>
 
   <label for="invitations">Invitations <button type="button" class="btn btn-default btn-sm" ng-click="accountDetails.inviteUser(accountDetails.account)">Invite User</button></label>
-  <div id="invitations" invitation-list invitations="accountDetails.account.invitations"></div>
-
+  <div ng-if="accountDetails.account.invitations.length === 0">No pending invitations</div>
+  <div id="invitations" invitation-list invitations="accountDetails.account.invitations" ng-if="accountDetails.account.invitations.length > 0"></div>
 
   <div>&nbsp;</div>
   <div class="row">
