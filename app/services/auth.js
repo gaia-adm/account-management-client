@@ -3,14 +3,15 @@
 const AuthService = function($window, $q, $state, AuthUser) {
   'ngInject';
   this.logout = function() {
+    let _self = this;
     let gapi = $window.gapi;
     if(gapi.auth2) {
-      this.googleSignout(gapi.auth2.getAuthInstance());
+      _self.googleSignout(gapi.auth2.getAuthInstance());
     } else {
       gapi.load('auth2', function() {
         let instance = gapi.auth2.init();
         instance.then(function() {
-          this.googleSignout(instance);
+          _self.googleSignout(instance);
         });
       });
     }

@@ -8,10 +8,10 @@ function nav(AuthService) {
     restrict: 'A',
     replace: false,
     template: require('./nav.html'),
-    link: function($scope) {
+    controller: function($scope) {
       'ngInject';
       $scope.logout = function() {
-        console.info(AuthService.logout());
+        AuthService.logout();
       }
     }
   }

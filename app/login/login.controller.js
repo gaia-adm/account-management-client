@@ -14,7 +14,8 @@ export default class LoginController {
       'height': 50,
       'longtitle': false,
       'theme': 'dark',
-      'onsuccess': this.onSignIn
+      'onsuccess': this.onSignIn,
+      'prompt': 'select_account'
       // 'onfailure': onFailure
     });
   };
