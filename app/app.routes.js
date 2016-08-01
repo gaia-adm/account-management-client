@@ -18,3 +18,4 @@ export default function routing($locationProvider, $urlRouterProvider, $statePro
     method: 'PUT'
   };
 }
+routing.$inject = ['$locationProvider', '$urlRouterProvider', '$stateProvider', '$resourceProvider'];

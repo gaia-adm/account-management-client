@@ -14,3 +14,4 @@ export default function routes($stateProvider) {
       }
     });
 }
+routes.$inject = ['$stateProvider'];

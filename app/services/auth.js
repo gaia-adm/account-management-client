@@ -23,6 +23,7 @@ const AuthService = function($window, $q, $state, AuthUser) {
     });
   };
 };
+AuthService.$inject = ['$window', '$q', '$state', 'AuthUser'];
 
 const AuthUser = function($cookies) {
   this.data = null;
@@ -46,6 +47,7 @@ const AuthUser = function($cookies) {
     this.data = null;
   }
 };
+AuthUser.$inject = ['$cookies'];
 
 const AuthRole = function($cookies) {
   this.role = null;
@@ -64,6 +66,7 @@ const AuthRole = function($cookies) {
     this.role = null;
   }
 };
+AuthRole.$inject = ['$cookies'];
 
 // const AuthInterceptor = function(AuthToken) {
 //   return {
@@ -84,13 +87,13 @@ export default angular.module('services.auth', [])
   .service('AuthUser', AuthUser)
   .service('AuthRole', AuthRole)
   // .factory('AuthInterceptor', AuthInterceptor)
-  .config(function($httpProvider) {
+  .config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.withCredentials = true;
     // $httpProvider.interceptors.push('AuthInterceptor');
-  })
-  .run(function($window) {
+  }])
+  .run(['$window', function($window) {
 
-  })
+  }])
   .name;
 
 

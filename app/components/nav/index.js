@@ -16,5 +16,5 @@ function nav(AuthService) {
 }
 
 export default angular.module('directives.nav', [])
-  .directive('nav', nav)
+  .directive('nav', ['AuthService', nav])
   .name;

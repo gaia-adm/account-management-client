@@ -32,5 +32,5 @@ function accountList($q) {
 }
 
 export default angular.module('directives.accountList', [])
-  .directive('accountList', accountList)
+  .directive('accountList', ['$q', accountList])
   .name;

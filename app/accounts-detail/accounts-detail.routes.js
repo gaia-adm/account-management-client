@@ -1,3 +1,4 @@
+
 export default function routes($stateProvider) {
   $stateProvider
     .state('authenticated.accounts.detail', {
@@ -8,3 +9,5 @@ export default function routes($stateProvider) {
       controllerAs: 'accountDetails'
     });
 }
+
+routes.$inject = ['$stateProvider'];

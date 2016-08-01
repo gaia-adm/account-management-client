@@ -21,6 +21,7 @@ const UserResource = function($resource, $http, $q, AuthUser) {
   };
   return UserResource;
 };
+UserResource.$inject = ['$resource', '$http', '$q', 'AuthUser'];
 
 export default angular.module('services.user', [])
   .factory('UserResource', UserResource)

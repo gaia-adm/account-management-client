@@ -22,5 +22,5 @@ const AccountResource = function($resource, $http) {
 };
 
 export default angular.module('services.account', [])
-  .factory('AccountResource', AccountResource)
+  .factory('AccountResource', ['$resource', '$http', AccountResource])
   .name;

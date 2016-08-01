@@ -1,5 +1,4 @@
 "use strict";
-import _ from 'lodash';
 
 let _toastr, _state, _uibModal;
 
@@ -88,3 +87,5 @@ export default class AccountsDetailController {
 
 
 }
+
+AccountsDetailController.$inject = ['$stateParams', 'AccountResource', 'toastr', '$state', '$uibModal'];

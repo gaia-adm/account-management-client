@@ -47,5 +47,5 @@ function invitationList(AccountResource) {
 }
 
 export default angular.module('directives.invitationList', [])
-  .directive('invitationList', invitationList)
+  .directive('invitationList', ['AccountResource', invitationList])
   .name;

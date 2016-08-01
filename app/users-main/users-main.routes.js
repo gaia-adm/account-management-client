@@ -12,3 +12,4 @@ export default function routes($stateProvider) {
       controllerAs: 'users'
     });
 }
+routes.$inject = ['$stateProvider'];

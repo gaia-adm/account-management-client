@@ -47,5 +47,5 @@ function inviteUser(AccountResource) {
 }
 
 export default angular.module('directives.inviteUser', [])
-  .directive('inviteUser', inviteUser)
+  .directive('inviteUser', ['AccountResource', inviteUser])
   .name;

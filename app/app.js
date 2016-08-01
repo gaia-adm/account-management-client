@@ -60,6 +60,7 @@ class AppCtrl {
     });
   }
 }
+AppCtrl.$inject = ['$transitions', '$state', 'toastr', 'AuthUser'];
 
 const MODULE_NAME = 'app';
 

@@ -53,3 +53,4 @@ export default class UsersMainController {
   }
 
 }
+UsersMainController.$inject = ['UserResource', '$uibModal', 'toastr'];

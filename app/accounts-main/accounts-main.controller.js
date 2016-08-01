@@ -52,3 +52,5 @@ export default class AccountsMainController {
   }
 
 }
+
+AccountsMainController.$inject = ['AccountResource', '$uibModal'];

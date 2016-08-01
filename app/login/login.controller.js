@@ -40,3 +40,5 @@ export default class LoginController {
     // });
   }
 }
+
+LoginController.$inject = ['$scope', '$element', '$window', 'UserResource', 'AuthService', '$state', 'toastr'];

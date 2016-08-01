@@ -44,5 +44,5 @@ function userForm(UserResource) {
 }
 
 export default angular.module('directives.userForm', [])
-  .directive('userForm', userForm)
+  .directive('userForm', ['UserResource', userForm])
   .name;

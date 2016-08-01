@@ -1,7 +1,6 @@
 "use strict";
 
 import angular from 'angular';
-import _ from 'lodash';
 
 function accountForm(AccountResource) {
   return {
@@ -44,5 +43,5 @@ function accountForm(AccountResource) {
 }
 
 export default angular.module('directives.accountForm', [])
-  .directive('accountForm', accountForm)
+  .directive('accountForm', ['AccountResource', accountForm])
   .name;
