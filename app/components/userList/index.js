@@ -16,6 +16,7 @@ function userList() {
     },
     template: require('./userList.html'),
     controller: function($scope) {
+      'ngInject';
       $scope.roles = roles;
       $scope.radio = {};
       $scope.onRoleChange = function(user) {

@@ -3,6 +3,7 @@
 import angular from 'angular';
 
 function userForm(UserResource) {
+  'ngInject';
   return {
     restrict: 'A',
     replace: true,
@@ -13,6 +14,7 @@ function userForm(UserResource) {
     },
     template: require('./userForm.html'),
     controller: function($scope) {
+      'ngInject';
       let emptyFn = function(){};
       if(typeof $scope.onSuccess != 'function') $scope.onSuccess = emptyFn;
       if(typeof $scope.onFailure != 'function') $scope.onFailure = emptyFn;
@@ -44,5 +46,5 @@ function userForm(UserResource) {
 }
 
 export default angular.module('directives.userForm', [])
-  .directive('userForm', ['UserResource', userForm])
+  .directive('userForm', userForm)
   .name;

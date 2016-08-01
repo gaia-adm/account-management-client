@@ -3,6 +3,7 @@
 import angular from 'angular';
 
 function accountForm(AccountResource) {
+  'ngInject';
   return {
     restrict: 'A',
     replace: true,
@@ -13,6 +14,7 @@ function accountForm(AccountResource) {
     },
     template: require('./accountForm.html'),
     controller: function($scope) {
+      'ngInject';
       let emptyFn = function(){};
       if(typeof $scope.onSuccess != 'function') $scope.onSuccess = emptyFn;
       if(typeof $scope.onFailure != 'function') $scope.onFailure = emptyFn;
@@ -43,5 +45,5 @@ function accountForm(AccountResource) {
 }
 
 export default angular.module('directives.accountForm', [])
-  .directive('accountForm', ['AccountResource', accountForm])
+  .directive('accountForm', accountForm)
   .name;

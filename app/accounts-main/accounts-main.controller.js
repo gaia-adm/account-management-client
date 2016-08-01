@@ -3,6 +3,7 @@
 let _uibModal;
 
 export default class AccountsMainController {
+  /*@ngInject*/
   constructor(AccountResource, $uibModal) {
     this.list = AccountResource.query();
     let _self = this;
@@ -11,6 +12,7 @@ export default class AccountsMainController {
     this.createAccountModalConfig = {
       backdrop: true,
       controller: function($scope, $uibModalInstance) {
+        'ngInject';
         $scope.onAccountCreationCancelled = function() {
           $uibModalInstance.close();
           _self.onAccountCreationCancelled();
@@ -52,5 +54,3 @@ export default class AccountsMainController {
   }
 
 }
-
-AccountsMainController.$inject = ['AccountResource', '$uibModal'];

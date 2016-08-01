@@ -5,6 +5,7 @@ import _ from 'lodash';
 import roles from '../../../../config/roles';
 
 function inviteUser(AccountResource) {
+  'ngInject';
   return {
     restrict: 'A',
     replace: true,
@@ -16,6 +17,7 @@ function inviteUser(AccountResource) {
     },
     template: require('./inviteUser.html'),
     controller: function($scope) {
+      'ngInject';
       let emptyFn = function(){};
       if(typeof $scope.onSuccess != 'function') $scope.onSuccess = emptyFn;
       if(typeof $scope.onFailure != 'function') $scope.onFailure = emptyFn;
@@ -47,5 +49,5 @@ function inviteUser(AccountResource) {
 }
 
 export default angular.module('directives.inviteUser', [])
-  .directive('inviteUser', ['AccountResource', inviteUser])
+  .directive('inviteUser', inviteUser)
   .name;

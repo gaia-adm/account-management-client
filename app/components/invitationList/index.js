@@ -5,6 +5,7 @@ import _ from 'lodash';
 import roles from '../../../../config/roles';
 
 function invitationList(AccountResource) {
+  'ngInject';
   return {
     restrict: 'A',
     replace: true,
@@ -13,6 +14,7 @@ function invitationList(AccountResource) {
     },
     template: require('./invitationList.html'),
     controller: function($scope) {
+      'ngInject';
       $scope.roles = roles;
       $scope.radio = {};
       $scope.onRoleChange = function(user) {
@@ -47,5 +49,5 @@ function invitationList(AccountResource) {
 }
 
 export default angular.module('directives.invitationList', [])
-  .directive('invitationList', ['AccountResource', invitationList])
+  .directive('invitationList', invitationList)
   .name;

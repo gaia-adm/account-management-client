@@ -1,4 +1,5 @@
 export default function routes($stateProvider) {
+  'ngInject';
   $stateProvider
     .state('authenticated.users', {
       abstract: true,
@@ -12,4 +13,3 @@ export default function routes($stateProvider) {
       controllerAs: 'users'
     });
 }
-routes.$inject = ['$stateProvider'];

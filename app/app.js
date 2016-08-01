@@ -42,6 +42,7 @@ let app = () => {
 };
 
 class AppCtrl {
+  /*@ngInject*/
   constructor($transitions, $state, toastr, AuthUser) {
 
     let requiresAuthCriteria = {
@@ -60,7 +61,6 @@ class AppCtrl {
     });
   }
 }
-AppCtrl.$inject = ['$transitions', '$state', 'toastr', 'AuthUser'];
 
 const MODULE_NAME = 'app';
 
@@ -100,6 +100,9 @@ angular.module(MODULE_NAME, [
   navDirective
 ])
   .config(routing)
+  .constant("appConfig", {
+    "url": ""
+  })
   .directive('app', app)
   .controller('AppCtrl', AppCtrl);
 

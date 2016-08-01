@@ -1,4 +1,5 @@
 export default function routes($stateProvider) {
+  'ngInject';
   $stateProvider
     .state('authenticated.home', {
       url: '/home',
@@ -8,4 +9,3 @@ export default function routes($stateProvider) {
       controllerAs: 'home'
     });
 }
-routes.$inject = ['$stateProvider'];

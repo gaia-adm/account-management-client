@@ -3,6 +3,7 @@
 let _toastr, _uibModal;
 
 export default class UsersMainController {
+  /*@ngInject*/
   constructor(UserResource, $uibModal, toastr) {
     this.list = UserResource.query();
     let _self = this;
@@ -12,6 +13,7 @@ export default class UsersMainController {
     this.createUserModalConfig = {
       backdrop: true,
       controller: function($scope, $uibModalInstance) {
+        'ngInject';
         $scope.onUserCreationCancelled = function() {
           $uibModalInstance.close();
           _self.onUserCreationCancelled();
@@ -53,4 +55,3 @@ export default class UsersMainController {
   }
 
 }
-UsersMainController.$inject = ['UserResource', '$uibModal', 'toastr'];

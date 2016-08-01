@@ -1,6 +1,7 @@
 let _UserResource, _AuthService, _state, _toastr;
 
 export default class LoginController {
+  /*@ngInject*/
   constructor($scope, $element, $window, UserResource, AuthService, $state, toastr) {
     _UserResource = UserResource;
     _AuthService = AuthService;
@@ -40,5 +41,3 @@ export default class LoginController {
     // });
   }
 }
-
-LoginController.$inject = ['$scope', '$element', '$window', 'UserResource', 'AuthService', '$state', 'toastr'];

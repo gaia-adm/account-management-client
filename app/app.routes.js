@@ -1,4 +1,6 @@
 export default function routing($locationProvider, $urlRouterProvider, $stateProvider, $resourceProvider) {
+  'ngInject';
+
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('login');
 
@@ -18,4 +20,3 @@ export default function routing($locationProvider, $urlRouterProvider, $statePro
     method: 'PUT'
   };
 }
-routing.$inject = ['$locationProvider', '$urlRouterProvider', '$stateProvider', '$resourceProvider'];

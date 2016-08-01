@@ -4,6 +4,7 @@ import angular from 'angular';
 import _ from 'lodash';
 
 function accountList($q) {
+  'ngInject';
   return {
     restrict: 'A',
     replace: true,
@@ -12,6 +13,7 @@ function accountList($q) {
     },
     template: require('./accountList.html'),
     controller: function($scope) {
+      'ngInject';
       let _applyFilters = function(accounts) {
         if($scope.showDisabled) return accounts;
         return _.filter(accounts, {enabled: true});
@@ -32,5 +34,5 @@ function accountList($q) {
 }
 
 export default angular.module('directives.accountList', [])
-  .directive('accountList', ['$q', accountList])
+  .directive('accountList', accountList)
   .name;

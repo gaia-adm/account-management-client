@@ -1,10 +1,11 @@
 "use strict";
 
-const UserResource = function($resource, $http, $q, AuthUser) {
-  var UserResource = $resource('http://localhost:3000/api/users/:id');
+const UserResource = function($resource, $http, $q, AuthUser, appConfig) {
+  'ngInject';
+  var UserResource = $resource(appConfig.url + '/api/users/:id');
   UserResource.login = function(id_token) {
     return $http({
-      url: 'http://localhost:3000/auth/google/token',
+      url: appConfig.url + '/auth/google/token',
       method: 'POST',
       withCredentials: true,
       data: {id_token: id_token}
@@ -21,7 +22,6 @@ const UserResource = function($resource, $http, $q, AuthUser) {
   };
   return UserResource;
 };
-UserResource.$inject = ['$resource', '$http', '$q', 'AuthUser'];
 
 export default angular.module('services.user', [])
   .factory('UserResource', UserResource)

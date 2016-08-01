@@ -1,6 +1,7 @@
 "use strict";
 
 const AuthService = function($window, $q, $state, AuthUser) {
+  'ngInject';
   this.logout = function() {
     let gapi = $window.gapi;
     if(gapi.auth2) {
@@ -23,9 +24,9 @@ const AuthService = function($window, $q, $state, AuthUser) {
     });
   };
 };
-AuthService.$inject = ['$window', '$q', '$state', 'AuthUser'];
 
 const AuthUser = function($cookies) {
+  'ngInject';
   this.data = null;
   this.set = function(data) {
     this.data = data;
@@ -47,9 +48,9 @@ const AuthUser = function($cookies) {
     this.data = null;
   }
 };
-AuthUser.$inject = ['$cookies'];
 
 const AuthRole = function($cookies) {
+  'ngInject';
   this.role = null;
   this.set = function(role) {
     this.role = role;
@@ -66,7 +67,6 @@ const AuthRole = function($cookies) {
     this.role = null;
   }
 };
-AuthRole.$inject = ['$cookies'];
 
 // const AuthInterceptor = function(AuthToken) {
 //   return {
@@ -88,10 +88,12 @@ export default angular.module('services.auth', [])
   .service('AuthRole', AuthRole)
   // .factory('AuthInterceptor', AuthInterceptor)
   .config(['$httpProvider', function($httpProvider) {
+    'ngInject';
     $httpProvider.defaults.withCredentials = true;
     // $httpProvider.interceptors.push('AuthInterceptor');
   }])
   .run(['$window', function($window) {
+    'ngInject';
 
   }])
   .name;

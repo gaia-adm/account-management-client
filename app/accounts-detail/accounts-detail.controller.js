@@ -3,6 +3,7 @@
 let _toastr, _state, _uibModal;
 
 export default class AccountsDetailController {
+  /*@ngInject*/
 
   constructor($stateParams, AccountResource, toastr, $state, $uibModal) {
     let _self = this;
@@ -14,6 +15,7 @@ export default class AccountsDetailController {
     this.inviteUserModalConfig = {
       backdrop: true,
       controller: function($scope, $uibModalInstance) {
+        'ngInject';
         $scope.onInvitationCancelled = function() {
           $uibModalInstance.close();
           _self.onInvitationCancelled();
@@ -87,5 +89,3 @@ export default class AccountsDetailController {
 
 
 }
-
-AccountsDetailController.$inject = ['$stateParams', 'AccountResource', 'toastr', '$state', '$uibModal'];

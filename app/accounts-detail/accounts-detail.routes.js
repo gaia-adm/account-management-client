@@ -1,5 +1,5 @@
-
 export default function routes($stateProvider) {
+  'ngInject';
   $stateProvider
     .state('authenticated.accounts.detail', {
       url: '/accounts/detail/{accountId:int}',
@@ -9,5 +9,3 @@ export default function routes($stateProvider) {
       controllerAs: 'accountDetails'
     });
 }
-
-routes.$inject = ['$stateProvider'];

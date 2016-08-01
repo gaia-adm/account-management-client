@@ -1,4 +1,5 @@
 export default function routes($stateProvider) {
+  'ngInject';
   $stateProvider
     .state('login', {
       url: '/login',
@@ -14,4 +15,3 @@ export default function routes($stateProvider) {
       }
     });
 }
-routes.$inject = ['$stateProvider'];
