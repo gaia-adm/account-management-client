@@ -8,6 +8,7 @@ export default function routes($stateProvider) {
     .state('authenticated.users.main', {
       url: '/users',
       authRequired: true,
+      roles: ['superuser'],
       template: require('./users-main.html'),
       controller: 'UsersMainController',
       controllerAs: 'users'

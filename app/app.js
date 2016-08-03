@@ -45,12 +45,20 @@ class AppCtrl {
   /*@ngInject*/
   constructor($transitions, $state, toastr, AuthUser) {
 
+    let currentRoles = null;
+
     let requiresAuthCriteria = {
       to: (state) => !!state.authRequired
     };
 
-    $transitions.onBefore( requiresAuthCriteria, function(transition, state) {
+    let requiresRoleCriteria = {
+      to: function(state) {
+        currentRoles = state.roles;
+        return state.roles && state.roles.length > 0
+      }
+    };
 
+    $transitions.onBefore( requiresAuthCriteria, function() {
       let user = AuthUser.get();
       if(user) {
         return true;
@@ -59,6 +67,18 @@ class AppCtrl {
         $state.go('login');
       }
     });
+
+    $transitions.onBefore(
+      requiresRoleCriteria,
+      function(transition, state) {
+        let user = AuthUser.get();
+        if(_.includes(currentRoles, 'superuser') && user.isSuperuser) {
+          return true;
+        }
+        toastr.error('You are not permitted to access that section.', 'ERROR');
+        return false;
+      }
+    );
   }
 }
 
