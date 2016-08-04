@@ -74,6 +74,10 @@ class AppCtrl {
         let user = AuthUser.get();
         if(_.includes(currentRoles, 'superuser') && user.isSuperuser) {
           return true;
+        } else if(_.includes(currentRoles, 'admin') && (user.isAdmin || user.isSuperuser)) {
+          return true;
+        } else if(_.includes(currentRoles, 'account-admin') && (user.isAccountAdmin || user.isAdmin || user.isSuperuser)) {
+          return true;
         }
         toastr.error('You are not permitted to access that section.', 'ERROR');
         return false;

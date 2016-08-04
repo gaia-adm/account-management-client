@@ -10,7 +10,8 @@
 <div ng-if="user" class="collapse navbar-collapse" uib-collapse="!isCollapsed">
   <ul class="nav navbar-nav">
     <li ui-sref-active="active"><a ui-sref="authenticated.home" >Home</a></li>
-    <li class="{{('authenticated.accounts'  | includedByState) ? 'active' : '' }}"><a ui-sref="authenticated.accounts.main">Accounts</a></li>
+    <li ng-if="user.isSuperuser || user.isAdmin || user.isAccountAdmin"
+      class="{{('authenticated.accounts'  | includedByState) ? 'active' : '' }}"><a ui-sref="authenticated.accounts.main">Accounts</a></li>
     <li ng-if="user.isSuperuser"
       class="{{('authenticated.users'     | includedByState) ? 'active' : '' }}"><a ui-sref="authenticated.users.main">Users</a></li>
   </ul>

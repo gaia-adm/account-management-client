@@ -25,6 +25,7 @@ export default class LoginController {
     _UserResource.login(id_token)
       .then(function(response) {
         console.info('logged in', response);
+
         _state.go('authenticated.home');
       })
       .catch(function(error) {

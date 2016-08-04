@@ -1,10 +1,11 @@
 "use strict";
 
-const UserResource = function($resource, $http, $q, AuthUser, appConfig) {
+const UserResource = function($resource, $http, $q, AuthUser, AccountResource, appConfig) {
   'ngInject';
   var UserResource = $resource(appConfig.url + '/api/users/:id');
   UserResource.login = function(id_token) {
-    return $http({
+    var deferred = $q.defer();
+    $http({
       url: appConfig.url + '/auth/google/token',
       method: 'POST',
       withCredentials: true,
@@ -12,12 +13,28 @@ const UserResource = function($resource, $http, $q, AuthUser, appConfig) {
     }).then(function(response) {
       if(response.data && response.data.user) {
         //SAVE THE TOKEN!
-        AuthUser.set(response.data.user);
-        return $q.resolve(response.data);
+        let user = response.data.user;
+        user.isAccountAdmin = false;
+
+        //check for account admin access
+        if(!user.isSuperuser && !user.isAdmin) {
+          AccountResource.query(function(results) {
+            user.isAccountAdmin = results.length > 0;
+            AuthUser.set(user);
+            return deferred.resolve(response.data);
+          }, function() {
+            console.error('could not get accounts');
+            deferred.reject();
+          })
+        } else {
+          AuthUser.set(user);
+          return deferred.resolve(response.data);
+        }
       } else {
-        return $q.reject();
+        return deferred.reject();
       }
     });
+    return deferred.promise;
   };
   return UserResource;
 };
