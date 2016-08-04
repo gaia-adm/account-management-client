@@ -69,29 +69,13 @@ const AuthRole = function($cookies) {
   }
 };
 
-// const AuthInterceptor = function(AuthToken) {
-//   return {
-//     'request': function(config) {
-      // var token = AuthToken.get();
-      // if (token) {
-      //   config.headers['x-access-token'] = token;
-      // };
-      // return config;
-      // config.headers['with-credentials'] = true;
-      // return config;
-    // }
-  // };
-// };
-
 export default angular.module('services.auth', [])
   .service('AuthService', AuthService)
   .service('AuthUser', AuthUser)
   .service('AuthRole', AuthRole)
-  // .factory('AuthInterceptor', AuthInterceptor)
   .config(['$httpProvider', function($httpProvider) {
     'ngInject';
     $httpProvider.defaults.withCredentials = true;
-    // $httpProvider.interceptors.push('AuthInterceptor');
   }])
   .run(['$window', function($window) {
     'ngInject';
