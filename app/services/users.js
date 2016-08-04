@@ -12,7 +12,6 @@ const UserResource = function($resource, $http, $q, AuthUser, appConfig) {
     }).then(function(response) {
       if(response.data && response.data.user) {
         //SAVE THE TOKEN!
-        UserResource.get({id: 42});
         AuthUser.set(response.data.user);
         return $q.resolve(response.data);
       } else {
