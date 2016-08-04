@@ -32,8 +32,8 @@ function accountForm(AccountResource) {
             if(resource.enabled !== false) resource.enabled = true;
             $scope.onSuccess({account: resource});
           },
-          function failure(e) {
-            $scope.onFailure(e);
+          function failure(error) {
+            $scope.onFailure({error: error});
           });
       };
 

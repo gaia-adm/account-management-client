@@ -50,7 +50,7 @@ export default class AccountsDetailController {
       _toastr.success('Account updated');
       _state.go('authenticated.accounts.main');
     }).catch(function(e) {
-      _toastr.error(e);
+      _toastr.error(e.data.message, e.data.name);
     });
   }
 

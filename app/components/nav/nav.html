@@ -7,14 +7,15 @@
   </button>
   <a class="navbar-brand" href="#">HPE</a>
 </div>
-<div class="collapse navbar-collapse" uib-collapse="!isCollapsed">
+<div ng-if="user" class="collapse navbar-collapse" uib-collapse="!isCollapsed">
   <ul class="nav navbar-nav">
     <li ui-sref-active="active"><a ui-sref="authenticated.home" >Home</a></li>
     <li class="{{('authenticated.accounts'  | includedByState) ? 'active' : '' }}"><a ui-sref="authenticated.accounts.main">Accounts</a></li>
-    <li class="{{('authenticated.users'     | includedByState) ? 'active' : '' }}"><a ui-sref="authenticated.users.main">Users</a></li>
+    <li ng-if="user.isSuperuser"
+      class="{{('authenticated.users'     | includedByState) ? 'active' : '' }}"><a ui-sref="authenticated.users.main">Users</a></li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
-
+    <span class="navbar-text ">Signed in as <u>{{user.firstName}} {{user.lastName}}</u></span>
     <li> {{me}}<a href="#" ng-click="logout()">Log Out</a></li>
   </ul>
 </div>

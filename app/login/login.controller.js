@@ -2,7 +2,7 @@ let _UserResource, _AuthService, _state, _toastr;
 
 export default class LoginController {
   /*@ngInject*/
-  constructor($scope, $element, $window, UserResource, AuthService, $state, toastr) {
+  constructor($window, UserResource, AuthService, $state, toastr) {
     _UserResource = UserResource;
     _AuthService = AuthService;
     _state = $state;
@@ -33,12 +33,4 @@ export default class LoginController {
       });
   };
 
-  signOut() {
-    _AuthService.logout();
-    // let auth2 = gapi.auth2.getAuthInstance();
-    // auth2.signOut().then(function () {
-    //   console.log('User signed out.');
-    //   _AuthToken.invalidate();
-    // });
-  }
 }

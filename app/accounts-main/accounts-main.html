@@ -3,5 +3,6 @@
        accounts="accounts.list"></div>
   <button type="button"
           class="btn btn-default btn-sm"
+          ng-if="accounts.userCanCreate()"
           ng-click="accounts.createAccount()">Create Account</button>
 </div>

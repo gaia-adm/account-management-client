@@ -1,13 +1,15 @@
 "use strict";
 
-let _uibModal;
+let _uibModal, _toastr, user;
 
 export default class AccountsMainController {
   /*@ngInject*/
-  constructor(AccountResource, $uibModal) {
+  constructor(AccountResource, AuthUser, toastr, $uibModal) {
     this.list = AccountResource.query();
     let _self = this;
     _uibModal = $uibModal;
+    _toastr = toastr;
+    user = AuthUser.get();
 
     this.createAccountModalConfig = {
       backdrop: true,
@@ -22,14 +24,15 @@ export default class AccountsMainController {
           $uibModalInstance.close();
           _self.onAccountCreationSuccess(account);
         };
-        $scope.onAccountCreationFailure = function() {
+        $scope.onAccountCreationFailure = function(error) {
+          console.info('on err', error);
           $uibModalInstance.close();
-          _self.onAccountCreationFailure();
+          _self.onAccountCreationFailure(error);
         };
       },
       template: '<div account-form ' +
       'on-success="onAccountCreationSuccess(account)" ' +
-      'on-failure="onAccountCreationFailure()" ' +
+      'on-failure="onAccountCreationFailure(error)" ' +
       'on-cancel="onAccountCreationCancelled()" ' +
       '/>'
     };
@@ -39,13 +42,17 @@ export default class AccountsMainController {
     this.createAccountModalInstance = _uibModal.open(this.createAccountModalConfig);
   }
 
+  userCanCreate() {
+    return user.isSuperuser || user.isAdmin;
+  }
+
   onAccountCreationSuccess(account) {
     this.list.push(account);
   }
 
 
-  onAccountCreationFailure() {
-    console.log('account creation failure');
+  onAccountCreationFailure(error) {
+    _toastr.error(error.data.message, error.data.name);
   }
 
 

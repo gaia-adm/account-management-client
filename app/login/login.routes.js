@@ -5,7 +5,7 @@ export default function routes($stateProvider) {
       url: '/login',
       views: {
         nav: {
-          template: '<div></div>'
+          template: '<div nav></div>'
         },
         main: {
           template: require('./login.html'),

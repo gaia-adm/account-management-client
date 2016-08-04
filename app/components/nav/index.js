@@ -2,7 +2,7 @@
 
 import angular from 'angular';
 
-function nav(AuthService) {
+function nav(AuthService, AuthUser) {
   'ngInject';
   return {
     restrict: 'A',
@@ -12,7 +12,9 @@ function nav(AuthService) {
       'ngInject';
       $scope.logout = function() {
         AuthService.logout();
-      }
+      };
+
+      $scope.user = AuthUser.get();
     }
   }
 }
