@@ -1,0 +1,26 @@
+require('dotenv').load({silent: true, path: '../.env'});
+
+var express = require('express');
+var path = require('path');
+var proxy = require('http-proxy-middleware');
+
+var app = express();
+
+var isProduction = process.env.NODE_ENV === 'production';
+var port = process.env.CLIENT_PORT || 8080;
+var publicPath = path.resolve(__dirname, '../dist');
+
+app.use('/api', proxy({target: 'http://'+process.env.BACKEND_HOST+':'+process.env.BACKEND_PORT}));
+app.use('/auth', proxy({target: 'http://'+process.env.BACKEND_HOST+':'+process.env.BACKEND_PORT}));
+app.use('/sockjs', proxy({target: 'http://'+process.env.BACKEND_HOST+':'+process.env.BACKEND_PORT}));
+
+// We point to our static assets
+app.use(express.static(publicPath));
+app.get('*', function response(req, res) {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
+
+// And run the server
+app.listen(port, function () {
+  console.log('Server running on port ' + port);
+});

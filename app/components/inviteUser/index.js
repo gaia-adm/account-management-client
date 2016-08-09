@@ -2,7 +2,7 @@
 
 import angular from 'angular';
 import _ from 'lodash';
-import roles from '../../../../config/roles';
+import roles from '../../../config/roles';
 
 function inviteUser(AccountResource) {
   'ngInject';
