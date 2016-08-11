@@ -15,7 +15,8 @@ export default class LoginController {
       'longtitle': false,
       'theme': 'dark',
       'onsuccess': this.onSignIn,
-      'prompt': 'select_account'
+      'prompt': 'select_account',
+      'login_hint': 'richard.plotkin@toptal.com' //DOESN'T WORK WITH signin2
       // 'onfailure': onFailure
     });
   };

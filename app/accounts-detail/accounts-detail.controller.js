@@ -11,7 +11,10 @@ export default class AccountsDetailController {
     _state = $state;
     _uibModal = $uibModal;
     let id = $stateParams.accountId;
-    this.account = AccountResource.get({id: id});
+    this.account = AccountResource.get({id: id}, function(account) {
+      account.invitations = _.filter(account.invitations, {date_accepted: null});
+      return account;
+    });
     this.inviteUserModalConfig = {
       backdrop: true,
       controller: function($scope, $uibModalInstance) {
