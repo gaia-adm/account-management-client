@@ -28,3 +28,8 @@
 .modal-content {
   padding: 15px;
 }
+
+.error {
+  font-weight: bold;
+  color: red;
+}

@@ -1,12 +1,13 @@
 'use strict';
 
 // Modules
-var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
+var webpack           = require('webpack');
+var autoprefixer      = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
+var DotenvPlugin      = require('webpack-dotenv-plugin');
+var ngAnnotatePlugin  = require('ng-annotate-webpack-plugin');
 
 /**
  * Env
@@ -175,6 +176,11 @@ module.exports = function makeWebpackConfig () {
     new ngAnnotatePlugin({
       add: true,
       // other ng-annotate options here
+    }),
+
+    new DotenvPlugin({
+      sample: './.env.default',
+      path: './.env'
     })
 
   );

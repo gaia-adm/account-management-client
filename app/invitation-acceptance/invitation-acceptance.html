@@ -1,0 +1,9 @@
+<div class="invitations">
+
+  <p>You have been invited to join an account using the email address <em>{{::invitationCtrl.invitation.email}}</em>.</p>
+  <button type="button"
+          class="btn btn-default btn-sm"
+          ng-click="invitationCtrl.onAcceptInvitation()"
+          >AUTHENTICATE & ACCEPT INVITATION</button>
+  <p ng-class="{'error':invitationCtrl.success === false}" ng-if="invitationCtrl.message">{{invitationCtrl.message}}</p>
+</div>

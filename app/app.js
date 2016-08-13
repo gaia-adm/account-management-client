@@ -1,9 +1,12 @@
+"use strict";
+
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import ngCookies from 'angular-cookies';
 import ngMessages from 'angular-messages';
 import ngResource from 'angular-resource';
 import ngTouch from 'angular-touch';
+
 import toastr from 'angular-toastr';
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
@@ -11,6 +14,8 @@ import checklistModel from 'checklist-model';
 
 import AccountResource from './services/accounts';
 import AuthServices from './services/auth';
+import GapiService from './services/gapi';
+import InvitationResource from './services/invitations';
 import UserResource from './services/users';
 
 import routing from './app.routes';
@@ -19,6 +24,7 @@ import Login from './login';
 import Home from './home';
 import AccountsMain from './accounts-main';
 import AccountsDetail from './accounts-detail';
+import InvitationAcceptance from './invitation-acceptance';
 import UsersMain from './users-main';
 
 import accountFormDirective from './components/accountForm';
@@ -107,11 +113,14 @@ angular.module(MODULE_NAME, [
   Home,
   AccountsMain,
   AccountsDetail,
+  InvitationAcceptance,
   UsersMain,
 
   //services
   AccountResource,
   AuthServices,
+  GapiService,
+  InvitationResource,
   UserResource,
 
   //directive
