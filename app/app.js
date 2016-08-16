@@ -14,6 +14,7 @@ import checklistModel from 'checklist-model';
 
 import AccountResource from './services/accounts';
 import AuthServices from './services/auth';
+import ErrorInterceptor from './services/error';
 import GapiService from './services/gapi';
 import InvitationResource from './services/invitations';
 import UserResource from './services/users';
@@ -119,6 +120,7 @@ angular.module(MODULE_NAME, [
   //services
   AccountResource,
   AuthServices,
+  ErrorInterceptor,
   GapiService,
   InvitationResource,
   UserResource,

@@ -46,7 +46,6 @@ export default class UsersMainController {
 
   onUserCreationFailure(error) {
     console.log('user creation failure', error);
-    _toastr.error(error.message, 'Error');
   }
 
 

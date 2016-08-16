@@ -50,7 +50,6 @@ export default class AccountsMainController {
     this.list.push(account);
   }
 
-
   onAccountCreationFailure(error) {
     _toastr.error(error.data.message, error.data.name);
   }

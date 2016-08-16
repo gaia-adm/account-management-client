@@ -52,9 +52,7 @@ export default class AccountsDetailController {
     account.$update().then(function(account) {
       _toastr.success('Account updated');
       _state.go('authenticated.accounts.main');
-    }).catch(function(e) {
-      _toastr.error(e.data.message, e.data.name);
-    });
+    })
   }
 
   disableAccount(account) {

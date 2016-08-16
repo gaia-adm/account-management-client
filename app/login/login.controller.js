@@ -1,12 +1,11 @@
-let _UserResource, _AuthService, _state, _toastr;
+let _UserResource, _AuthService, _state;
 
 export default class LoginController {
   /*@ngInject*/
-  constructor($window, UserResource, AuthService, $state, toastr) {
+  constructor($window, UserResource, AuthService, $state) {
     _UserResource = UserResource;
     _AuthService = AuthService;
     _state = $state;
-    _toastr = toastr;
     let gapi = $window.gapi;
     gapi.signin2.render('gaia-google-sign-in', {
       'scope': 'profile email',
@@ -25,13 +24,8 @@ export default class LoginController {
     _UserResource.login(id_token)
       .then(function(response) {
         console.info('logged in', response);
-
         _state.go('authenticated.home');
       })
-      .catch(function(error) {
-        console.error('bad luck', error);
-        _toastr.error(error);
-      });
   };
 
 }
