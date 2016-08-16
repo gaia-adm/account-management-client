@@ -33,6 +33,9 @@ const UserResource = function($resource, $http, $q, AuthUser, AccountResource, a
       } else {
         return deferred.reject();
       }
+    }).catch(function(err) {
+      var err = err.data || err;
+      return deferred.reject(err);
     });
     return deferred.promise;
   };
