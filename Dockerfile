@@ -1,6 +1,5 @@
 #FROM node:4.4.7-slim
 FROM mhart/alpine-node:4.4.7
-RUN apk add --no-cache bash
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -12,8 +11,7 @@ ENV NODE_ENV ${NODE}
 
 # Install app dependencies
 COPY package.json /tmp/package.json
-RUN cd /tmp && npm install
-RUN cp -a /tmp/node_modules /usr/src/app/
+RUN cd /tmp && npm install && mv /tmp/node_modules /usr/src/app/ && rm -rf /tmp/*
 
 # Bundle app source
 COPY . /usr/src/app
