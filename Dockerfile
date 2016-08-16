@@ -17,6 +17,7 @@ RUN cp -a /tmp/node_modules /usr/src/app/
 
 # Bundle app source
 COPY . /usr/src/app
+COPY ./.env.default /usr/src/app/.env
 RUN npm run build
 
 EXPOSE 8080
