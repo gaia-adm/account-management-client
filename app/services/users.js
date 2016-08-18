@@ -2,7 +2,9 @@
 
 const UserResource = function($resource, $http, $q, AuthUser, AccountResource, appConfig) {
   'ngInject';
-  var UserResource = $resource(appConfig.url + '/api/users/:id');
+  var UserResource = $resource(appConfig.url + '/api/users/:id', {
+    id: '@id'
+  });
   UserResource.login = function(id_token) {
     var deferred = $q.defer();
     $http({

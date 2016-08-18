@@ -1,0 +1,18 @@
+<ng-form name="userDeleteConfirmation">
+
+  <div>
+    Are you certain that you want to delete the user {{::user.firstName}} {{::user.lastName}}?<br />
+    This action CANNOT be undone.
+  </div>
+
+  <div>
+    <div class="col-xs-6">
+      <button type="button" class="btn btn-default btn-block" ng-click="cancel()">Cancel</button>
+    </div>
+    <div class="col-xs-6">
+      <button type="submit" class="btn btn-primary btn-block" ng-click="deleteUser()">Delete User</button>
+    </div>
+  </div>
+  <div>&nbsp;</div>
+
+</ng-form>

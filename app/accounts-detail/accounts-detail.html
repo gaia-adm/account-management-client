@@ -21,7 +21,11 @@
   </div>
 
   <label for="users">Users</label>
-  <div id="users" user-list users="accountDetails.account.users"></div>
+  <div id="users"
+       user-list
+       users="accountDetails.account.users"
+       remove-user="accountDetails.removeUser(user)"
+      ></div>
 
   <label for="invitations">Invitations <button type="button" class="btn btn-default btn-sm" ng-click="accountDetails.inviteUser(accountDetails.account)">Invite User</button></label>
   <div ng-if="accountDetails.account.invitations.length === 0">No pending invitations</div>

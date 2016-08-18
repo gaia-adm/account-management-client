@@ -32,6 +32,7 @@ import accountFormDirective from './components/accountForm';
 import accountListDirective from './components/accountList';
 import invitationListDirective from './components/invitationList';
 import inviteUserDirective from './components/inviteUser';
+import userDeleteConfirmationDirective from './components/userDeleteConfirmation';
 import userFormDirective from './components/userForm';
 import userListDirective from './components/userList';
 import navDirective from './components/nav';
@@ -130,6 +131,7 @@ angular.module(MODULE_NAME, [
   accountListDirective,
   invitationListDirective,
   inviteUserDirective,
+  userDeleteConfirmationDirective,
   userFormDirective,
   userListDirective,
   navDirective

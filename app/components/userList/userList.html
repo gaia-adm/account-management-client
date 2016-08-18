@@ -7,6 +7,7 @@
       <th ng-if="mode==='user-management'">Emails</th>
       <th ng-if="mode==='user-management'">Superuser</th>
       <th ng-if="mode!=='user-management'" ng-repeat="role in roles">{{::role.name}}</th>
+      <th></th>
     </tr>
     <tr ng-repeat="user in users">
       <td>{{::user.firstName}}</td>
@@ -24,6 +25,9 @@
           ng-init="user.radio[role.id] = (user.role_ids.indexOf(role.id) !== -1)"
           ng-change="onRoleChange(user)"/>
       </td>
+      <!-- REMOVE / DELETE -->
+      <td ng-if="mode==='user-management'"><div ng-click="onDeleteUser(user)" style="cursor: pointer" class="glyphicon glyphicon-trash"></div></td>
+      <td ng-if="mode!=='user-management'"><div ng-click="onRemoveUser(user)" style="cursor: pointer" class="glyphicon glyphicon-remove"></div></td>
     </tr>
   </table>
 </div>

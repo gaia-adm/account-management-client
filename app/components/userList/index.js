@@ -12,11 +12,16 @@ function userList() {
     replace: true,
     scope: {
       users: '=',
-      mode: '@'
+      mode: '@',
+      removeUser: '&?',
+      deleteUser: '&?'
     },
     template: require('./userList.html'),
     controller: function($scope) {
       'ngInject';
+      let emptyFn = function(){};
+      if(typeof $scope.removeUser != 'function') $scope.removeUser = emptyFn;
+      if(typeof $scope.deleteUser != 'function') $scope.deleteUser = emptyFn;
       $scope.roles = roles;
       $scope.radio = {};
       $scope.onRoleChange = function(user) {
@@ -27,7 +32,13 @@ function userList() {
           }
           return result;
         }, []);
-      }
+      };
+      $scope.onRemoveUser = function(user) {
+        $scope.removeUser({user: user});
+      };
+      $scope.onDeleteUser = function(user) {
+        $scope.deleteUser({user: user});
+      };
     }
   }
 }

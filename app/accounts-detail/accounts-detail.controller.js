@@ -46,9 +46,6 @@ export default class AccountsDetailController {
   //ACCOUNT
 
   saveChanges(account) {
-    if(account.users.length === 0) {
-      delete(account.users);
-    }
     account.$update().then(function(account) {
       _toastr.success('Account updated');
       _state.go('authenticated.accounts.main');
@@ -72,10 +69,7 @@ export default class AccountsDetailController {
   }
 
   onInvitationSuccess(invitation) {
-    console.log('invitation success');
-    console.info(invitation);
     this.account.invitations.push(invitation);
-    console.info(this.account.invitations);
   }
 
 
@@ -86,6 +80,13 @@ export default class AccountsDetailController {
 
   onInvitationCancelled() {
     console.log('invitation cancelled');
+  }
+
+  //USER MANAGEMENT
+  removeUser(user) {
+    _.remove(this.account.users, function(u) {
+      return u.id === user.id;
+    });
   }
 
 
