@@ -9,11 +9,15 @@ function accountList($q) {
     restrict: 'A',
     replace: true,
     scope: {
-      accounts: '='
+      accounts: '=',
+      deleteAccount: '&?'
     },
     template: require('./accountList.html'),
     controller: function($scope) {
       'ngInject';
+      let emptyFn = function(){};
+      if(typeof $scope.deleteAccount != 'function') $scope.deleteAccount = emptyFn;
+
       let _applyFilters = function(accounts) {
         if($scope.showDisabled) return accounts;
         return _.filter(accounts, {enabled: true});
@@ -28,6 +32,10 @@ function accountList($q) {
       $scope.toggleShowDisabled = function() {
         $scope.showDisabled = !$scope.showDisabled;
         $scope.filteredAccounts = _applyFilters($scope.accounts);
+      };
+
+      $scope.onDeleteAccount = function(account) {
+        $scope.deleteAccount({account: account});
       };
     }
   }

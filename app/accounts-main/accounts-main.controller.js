@@ -36,10 +36,34 @@ export default class AccountsMainController {
       'on-cancel="onAccountCreationCancelled()" ' +
       '/>'
     };
+
+    this.deleteAccountModalConfig = {
+      backdrop: true,
+      controller: function($scope, $uibModalInstance) {
+        'ngInject';
+        $scope.onAccountDeletionCancelled = function() {
+          $uibModalInstance.close();
+          _self.onAccountDeletionCancelled();
+        };
+        $scope.onAccountDeletionConfirmed = function(user) {
+          $uibModalInstance.close();
+          _self.onAccountDeletionConfirmed(user);
+        };
+      },
+      template: '<div account-delete-confirmation ' +
+      'on-confirm="onAccountDeletionConfirmed()" ' +
+      'on-cancel="onAccountDeletionCancelled()" ' +
+      '/>'
+    };
   }
 
   createAccount(account) {
     this.createAccountModalInstance = _uibModal.open(this.createAccountModalConfig);
+  }
+
+  deleteAccount(account) {
+    this.accountToDelete = account;
+    let modal = _uibModal.open(this.deleteAccountModalConfig);
   }
 
   userCanCreate() {
@@ -57,6 +81,26 @@ export default class AccountsMainController {
 
   onAccountCreationCancelled() {
     console.log('account creation cancelled');
+  }
+
+  onAccountDeletionConfirmed() {
+    let _self = this;
+    if(_self.accountToDelete) {
+      console.info('would delete', _self.accountToDelete);
+      _self.accountToDelete.$delete(
+        function success(resource) {
+          _.remove(_self.list, function(account) {
+            return account.id === _self.accountToDelete.id;
+          });
+          _self.accountToDelete = null;
+          _toastr.success('Account Deleted');
+        }
+      );
+    }
+  }
+
+  onAccountDeletionCancelled() {
+    console.log('account deletion cancelled');
   }
 
 }

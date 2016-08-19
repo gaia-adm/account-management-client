@@ -8,10 +8,12 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
+      <th></th>
     </tr>
     <tr ng-repeat="account in filteredAccounts" ng-class="{disabled:!account.enabled}">
       <td><a href="#" ui-sref="authenticated.accounts.detail({accountId: account.id})">{{::account.name}}</a> <i ng-if="!account.enabled">(disabled)</i></td>
       <td>{{::account.description}}</td>
+      <td><div ng-if="!account.enabled" ng-click="onDeleteAccount(account)" style="cursor: pointer" class="glyphicon glyphicon-trash"></div></td>
     </tr>
   </table>
 </div>

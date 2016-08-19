@@ -1,7 +1,7 @@
-<ng-form name="userDeleteConfirmation">
+<ng-form name="accountDeleteConfirmation">
 
   <div>
-    Are you certain that you want to delete the user {{::user.firstName}} {{::user.lastName}}?<br />
+    Are you certain that you want to PERMANENTLY DELETE the account?<br />
     This action CANNOT be undone.
   </div>
 
@@ -10,7 +10,7 @@
       <button type="button" class="btn btn-default btn-block" ng-click="cancel()">Cancel</button>
     </div>
     <div class="col-xs-6">
-      <button type="submit" class="btn btn-primary btn-block" ng-click="deleteUser()">Delete User</button>
+      <button type="submit" class="btn btn-primary btn-block" ng-click="deleteAccount()">Delete Account</button>
     </div>
   </div>
   <div>&nbsp;</div>

@@ -28,6 +28,7 @@ import AccountsDetail from './accounts-detail';
 import InvitationAcceptance from './invitation-acceptance';
 import UsersMain from './users-main';
 
+import accountDeleteConfirmationDirective from './components/accountDeleteConfirmation';
 import accountFormDirective from './components/accountForm';
 import accountListDirective from './components/accountList';
 import invitationListDirective from './components/invitationList';
@@ -127,6 +128,7 @@ angular.module(MODULE_NAME, [
   UserResource,
 
   //directive
+  accountDeleteConfirmationDirective,
   accountFormDirective,
   accountListDirective,
   invitationListDirective,
