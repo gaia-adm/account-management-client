@@ -87,6 +87,8 @@ export default class UsersMainController {
               return user.id === _self.userToDelete.id;
             });
           _self.userToDelete = null;
+          _toastr.success('User Deleted');
+
         }
       );
     }
