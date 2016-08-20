@@ -28,7 +28,10 @@ function userForm(UserResource) {
       };
 
       $scope.createUser = function(user) {
-        user.emails = user.emailField.split(/[^@a-zA-Z0-9!#$%&*+-\/=?^_`{|}~']/);
+        user.emails = user.emailField.split(/[^@a-zA-Z0-9!#$%&\*\+\-\/\=\?\^_`{|}~'.]/);
+        _.filter(user.emails, function(email) {
+          return email.length > 0
+        });
         UserResource.save(user,
           function success(resource) {
             $scope.onSuccess({user: resource});

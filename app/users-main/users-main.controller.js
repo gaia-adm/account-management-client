@@ -20,7 +20,6 @@ export default class UsersMainController {
           _self.onUserCreationCancelled();
         };
         $scope.onUserCreationSuccess = function(user) {
-          console.info('on success', user);
           $uibModalInstance.close();
           _self.onUserCreationSuccess(user);
         };
