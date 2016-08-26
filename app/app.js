@@ -26,6 +26,7 @@ import Home from './home';
 import AccountsMain from './accounts-main';
 import AccountsDetail from './accounts-detail';
 import InvitationAcceptance from './invitation-acceptance';
+import UsersDetail from './users-detail';
 import UsersMain from './users-main';
 
 import accountDeleteConfirmationDirective from './components/accountDeleteConfirmation';
@@ -117,6 +118,7 @@ angular.module(MODULE_NAME, [
   AccountsMain,
   AccountsDetail,
   InvitationAcceptance,
+  UsersDetail,
   UsersMain,
 
   //services
