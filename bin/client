@@ -1,4 +1,4 @@
-require('dotenv').load({silent: true, path: '../.env'});
+require('dotenv').load({silent: false, path: '.env'});
 
 var express = require('express');
 var path = require('path');

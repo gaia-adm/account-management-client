@@ -227,11 +227,11 @@ module.exports = function makeWebpackConfig () {
     contentBase: './public',
     stats: 'minimal',
     proxy: {
-      '/api*': {
+      '/api/**': {
         target: 'http://localhost:3000',
         secure: false
       },
-      '/auth*': {
+      '/auth/**': {
         target: 'http://localhost:3000',
         secure: false
       }
