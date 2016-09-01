@@ -37,6 +37,27 @@ function accountList($q) {
       $scope.onDeleteAccount = function(account) {
         $scope.deleteAccount({account: account});
       };
+
+      $scope.sort = function(field, direction) {
+        $scope.accounts = _.sortBy($scope.accounts, field);
+        if(direction === 'ASC') {
+          _.reverse($scope.accounts);
+        }
+        $scope.currentSortField = field;
+        $scope.currentSortDirection = direction;
+      };
+
+      $scope.toggleSort = function(field) {
+        if($scope.currentSortField !== field ||
+          ($scope.currentSortField === field && $scope.currentSortDirection === 'ASC')) {
+          $scope.sort(field, 'DESC');
+        } else {
+          $scope.sort(field, 'ASC');
+        }
+      };
+
+      $scope.currentSortField = 'name';
+      $scope.currentSortDirection = 'DESC';
     }
   }
 }

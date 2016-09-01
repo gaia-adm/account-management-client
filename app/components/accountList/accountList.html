@@ -6,7 +6,18 @@
       <button ng-if="!showDisabled" type="button" class="pull-right btn btn-info btn-xs" ng-click="toggleShowDisabled()">Show Disabled</button>
     </caption>
     <tr>
-      <th>Name</th>
+      <th class="sortable">
+        <span ng-click="toggleSort('name')">
+          Name
+          </span>
+        <span
+          ng-if="currentSortField === 'name' && currentSortDirection === 'DESC'"
+          ng-click="toggleSort('name')"
+          class="glyphicon glyphicon-menu-down" ></span>
+        <span
+          ng-if="currentSortField === 'name' && currentSortDirection === 'ASC'"
+          ng-click="toggleSort('name')"
+          class="glyphicon glyphicon-menu-up" ></span></th>
       <th>Description</th>
       <th></th>
     </tr>
