@@ -1,3 +1,7 @@
 export default class HomeController {
-  constructor(){};
+
+  constructor(AuthUser, UserResource){
+    'ngInject';
+    this.user = UserResource.get({id: 'self'});
+  };
 }

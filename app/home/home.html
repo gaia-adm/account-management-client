@@ -1,3 +1,18 @@
 <div class="login">
-  HOME! You are signed in.
+  <p>You are logged in as <i>{{::home.user.firstName}} {{::home.user.lastName}}.</i></p>
+  <p>
+    <b>Your Email Addresses</b>
+    <ul>
+      <li ng-repeat="email in home.user.emails">
+        {{::email}}
+      </li>
+    </ul>
+  </p>
+  <p><b>Your Accounts</b>
+    <ul>
+      <li ng-repeat="account in home.user.accounts">
+        {{::account.name}} — <i>{{::account.role_names.join(', ')}}</i>
+      </li>
+    </ul>
+  </p>
 </div>
