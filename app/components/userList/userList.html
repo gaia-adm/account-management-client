@@ -1,11 +1,51 @@
 <div class="user-list table-responsive">
   <table class="table table-striped">
     <tr>
-      <th class="col-md-2">First Name</th>
-      <th class="col-md-2">Last Name</th>
-      <th class="col-md-3">Emails</th>
-      <th class="col-md-1" ng-if="mode==='user-management'">Superuser</th>
-      <th class="col-md-1" ng-if="mode==='user-management'">Site Admin</th>
+      <th class="col-md-2 sortable" ng-click="toggleSort('firstName')">
+        First Name
+        <span
+          ng-if="currentSortField === 'firstName' && currentSortDirection === 'DESC'"
+          class="glyphicon glyphicon-menu-down" ></span>
+        <span
+          ng-if="currentSortField === 'firstName' && currentSortDirection === 'ASC'"
+          class="glyphicon glyphicon-menu-up" ></span>
+      </th>
+      <th class="col-md-2 sortable" ng-click="toggleSort('lastName')">
+        Last Name
+        <span
+          ng-if="currentSortField === 'lastName' && currentSortDirection === 'DESC'"
+          class="glyphicon glyphicon-menu-down" ></span>
+        <span
+          ng-if="currentSortField === 'lastName' && currentSortDirection === 'ASC'"
+          class="glyphicon glyphicon-menu-up" ></span>
+      </th>
+      <th class="col-md-3 sortable" ng-click="toggleSort('emails')">
+        Emails
+        <span
+          ng-if="currentSortField === 'emails' && currentSortDirection === 'DESC'"
+          class="glyphicon glyphicon-menu-down" ></span>
+        <span
+          ng-if="currentSortField === 'emails' && currentSortDirection === 'ASC'"
+          class="glyphicon glyphicon-menu-up" ></span>
+        </th>
+      <th class="col-md-1 sortable" ng-if="mode==='user-management'" ng-click="toggleSort('isSuperuser')">
+        Superuser
+        <span
+          ng-if="currentSortField === 'isSuperuser' && currentSortDirection === 'DESC'"
+          class="glyphicon glyphicon-menu-down" ></span>
+        <span
+          ng-if="currentSortField === 'isSuperuser' && currentSortDirection === 'ASC'"
+          class="glyphicon glyphicon-menu-up" ></span>
+        </th>
+      <th class="col-md-1 sortable" ng-if="mode==='user-management'" ng-click="toggleSort('isAdmin')">
+        Site Admin
+        <span
+          ng-if="currentSortField === 'isAdmin' && currentSortDirection === 'DESC'"
+          class="glyphicon glyphicon-menu-down" ></span>
+        <span
+          ng-if="currentSortField === 'isAdmin' && currentSortDirection === 'ASC'"
+          class="glyphicon glyphicon-menu-up" ></span>
+        </th>
       <th class="col-md-1" ng-if="mode!=='user-management'" ng-repeat="role in roles">{{::role.name}}</th>
       <th class="col-md-1"></th>
     </tr>

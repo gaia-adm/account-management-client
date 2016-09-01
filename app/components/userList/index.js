@@ -39,6 +39,28 @@ function userList() {
       $scope.onDeleteUser = function(user) {
         $scope.deleteUser({user: user});
       };
+
+      $scope.sort = function(field, direction) {
+        $scope.users = _.sortBy($scope.users, field);
+        if(direction === 'ASC') {
+          _.reverse($scope.users);
+        }
+        $scope.currentSortField = field;
+        $scope.currentSortDirection = direction;
+        console.log($scope.currentSortField, $scope.currentSortDirection);
+      };
+
+      $scope.toggleSort = function(field) {
+        if($scope.currentSortField !== field ||
+          ($scope.currentSortField === field && $scope.currentSortDirection === 'ASC')) {
+          $scope.sort(field, 'DESC');
+        } else {
+          $scope.sort(field, 'ASC');
+        }
+      };
+
+      $scope.currentSortField = 'lastName';
+      $scope.currentSortDirection = 'DESC';
     }
   }
 }
