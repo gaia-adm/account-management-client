@@ -1,3 +1,7 @@
+.user-form {
+    padding-bottom: 30px;
+}
+
 .user-form input[type=checkbox] {
     width: auto;
     height: auto;

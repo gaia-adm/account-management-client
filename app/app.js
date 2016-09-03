@@ -40,7 +40,9 @@ import userListDirective from './components/userList';
 import navDirective from './components/nav';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import 'awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css';
 import 'angular-toastr/dist/angular-toastr.css';
+import '../fonts/font.css';
 import '../style/app.css';
 
 let app = () => {

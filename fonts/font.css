@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'MetricHPE-Regular';
+  src: url('MetricHPE-Regular.eot');
+  src: url('MetricHPE-Regular.woff2') format('woff2'),
+       url('MetricHPE-Regular.woff') format('woff'),
+       url('MetricHPE-Regular.ttf') format('truetype'),
+       url('MetricHPE-Regular.svg#MetricHPE-Regular') format('svg'),
+       url('MetricHPE-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

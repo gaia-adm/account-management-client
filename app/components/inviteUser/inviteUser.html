@@ -18,12 +18,16 @@
       <label for="permissions">Permissions</label>
       <div id="permissions">
         <div ng-repeat="role in roles">
-          <input
-            type="checkbox"
-            name="roles"
-            checklist-model="invitation.role_ids"
-            checklist-value="role.id" />
-          {{::role.name}}
+          <div class="checkbox checkbox-inline">
+            <input
+              type="checkbox"
+              class="styled"
+              name="roles"
+              id="{{::role.name}}"
+              checklist-model="invitation.role_ids"
+              checklist-value="role.id" />
+            <label for="{{::role.name}}">{{::role.name}}</label>
+          </div>
         </div>
       </div>
     </div>

@@ -50,21 +50,42 @@
       <th class="col-md-1"></th>
     </tr>
     <tr ng-repeat="user in users">
-      <td class="col-md-2"><a ui-sref="authenticated.users.detail({userId: user.id})">{{::user.firstName}}</a></td>
-      <td class="col-md-2"><a ui-sref="authenticated.users.detail({userId: user.id})">{{::user.lastName}}</a></td>
+      <td class="col-md-2" ng-switch="mode">
+        <div ng-switch-when="user-management">
+          <a ui-sref="authenticated.users.detail({userId: user.id})">{{::user.firstName}}</a>
+        </div>
+        <div ng-switch-default>
+          {{::user.firstName}}
+        </div>
+      </td>
+      <td class="col-md-2" ng-switch="mode">
+        <div ng-switch-when="user-management">
+          <a ui-sref="authenticated.users.detail({userId: user.id})">{{::user.lastName}}</a>
+        </div>
+        <div ng-switch-default>
+          {{::user.lastName}}
+        </div>
+      </td>
       <td class="col-md-3">
         <div class="emails" title="{{user.emails.join(', ')}}">{{user.emails.join(', ')}}</div>
       </td>
-      <td class="col-md-1" ng-if="mode==='user-management'"><span ng-if="user.isSuperuser">X</span></td>
-      <td class="col-md-1" ng-if="mode==='user-management'"><span ng-if="user.isAdmin">X</span></td>
+      <td class="col-md-1" ng-if="mode==='user-management'"><span class="checkmark" ng-if="user.isSuperuser"></span></td>
+      <td class="col-md-1" ng-if="mode==='user-management'"><span class="checkmark" ng-if="user.isAdmin"></span></td>
       <td class="col-md-1" ng-if="mode!=='user-management'" ng-repeat="role in roles">
+        <form role="form">
         <!-- TODO: Refactor to checklist-model, like invitations -->
-        <input
-          type="checkbox"
-          name="roles"
-          ng-model="user.radio[role.id]"
-          ng-init="user.radio[role.id] = (user.role_ids.indexOf(role.id) !== -1)"
-          ng-change="onRoleChange(user)"/>
+        <div class="checkbox checkbox-inline">
+          <input
+            type="checkbox"
+            class="styled"
+            name="roles"
+            id="roles_{{::role.id}}"
+            ng-model="user.radio[role.id]"
+            ng-init="user.radio[role.id] = (user.role_ids.indexOf(role.id) !== -1)"
+            ng-change="onRoleChange(user)"/>
+          <label for="roles_{{::role.id}}"></label>
+        </div>
+        </form>
       </td>
       <!-- REMOVE / DELETE -->
       <td class="col-md-1" ng-if="mode==='user-management'"><div ng-click="onDeleteUser(user)" style="cursor: pointer" class="glyphicon glyphicon-trash"></div></td>

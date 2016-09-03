@@ -5,7 +5,8 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
   </button>
-  <a class="navbar-brand" ui-sref="login">HPE</a>
+  <a ng-if="!user" class="navbar-brand" ui-sref="login">HPE</a>
+  <a ng-if="user" class="navbar-brand" ui-sref="authenticated.home">HPE</a>
 </div>
 <div ng-if="user" class="collapse navbar-collapse" uib-collapse="!isCollapsed">
   <ul class="nav navbar-nav">
@@ -17,6 +18,6 @@
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <span class="navbar-text ">Signed in as <u>{{user.firstName}} {{user.lastName}}</u></span>
-    <li> {{me}}<a href="#" ng-click="logout()">Log Out</a></li>
+    <li> {{me}}<a href="#" ng-click="logout()" class="hpe-green">Log Out</a></li>
   </ul>
 </div>

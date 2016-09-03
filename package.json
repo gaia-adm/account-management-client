@@ -19,6 +19,7 @@
     "angular-ui-bootstrap": "^2.0.1",
     "angular-ui-router": "^1.0.0-beta.1",
     "autoprefixer": "^6.4.0",
+    "awesome-bootstrap-checkbox": "^0.3.7",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
