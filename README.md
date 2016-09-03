@@ -16,6 +16,11 @@ This app is built with AngularJS, using webpack to bundle the source code, and [
 - The client app is designed to be written with ES2015 using AngularJS 1.5+, compiled by webpack. [This page](http://angular-tips.com/blog/2015/06/using-angular-1-dot-x-with-es6-and-webpack/) does a really great job of outlining when to use (and not use) classes.
 - Injection/annotation is handled by the ngAnnotatePlugin.
 
+## Commands
+- ```npm run build``` Build the project for production. Note that this is *not* "npm build" 
+- ```npm start``` Production start. Make sure to do "npm run build" first so that you have an app you can serve!
+- ```npm run start:dev``` Starts the webpack-dev-server with auto-reloading as you make changes.
+
 ## Docker
 - SEE A DOCKER-COMPOSE EXAMPLE IN gaia-account-management, of which gaia-account-management-client is included as a submodule
 - ```docker-compose up``` will start three containers: db, server, and client

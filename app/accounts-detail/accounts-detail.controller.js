@@ -24,7 +24,6 @@ export default class AccountsDetailController {
           _self.onInvitationCancelled();
         };
         $scope.onInvitationSuccess = function(invitation) {
-          console.info('on success', invitation);
           $uibModalInstance.close();
           _self.onInvitationSuccess(invitation);
         };

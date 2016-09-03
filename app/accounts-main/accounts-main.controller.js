@@ -20,12 +20,10 @@ export default class AccountsMainController {
           _self.onAccountCreationCancelled();
         };
         $scope.onAccountCreationSuccess = function(account) {
-          console.info('on success', account);
           $uibModalInstance.close();
           _self.onAccountCreationSuccess(account);
         };
         $scope.onAccountCreationFailure = function(error) {
-          console.info('on err', error);
           $uibModalInstance.close();
           _self.onAccountCreationFailure(error);
         };
@@ -86,7 +84,6 @@ export default class AccountsMainController {
   onAccountDeletionConfirmed() {
     let _self = this;
     if(_self.accountToDelete) {
-      console.info('would delete', _self.accountToDelete);
       _self.accountToDelete.$delete(
         function success(resource) {
           _.remove(_self.list, function(account) {

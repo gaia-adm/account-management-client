@@ -23,7 +23,6 @@ export default class LoginController {
     let id_token = googleUser.getAuthResponse().id_token;
     _UserResource.login(id_token)
       .then(function(response) {
-        console.info('logged in', response);
         _state.go('authenticated.home');
       })
   };

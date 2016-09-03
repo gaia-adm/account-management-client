@@ -47,7 +47,6 @@ function userList() {
         }
         $scope.currentSortField = field;
         $scope.currentSortDirection = direction;
-        console.log($scope.currentSortField, $scope.currentSortDirection);
       };
 
       $scope.toggleSort = function(field) {
