@@ -1,6 +1,10 @@
 #FROM node:4.4.7-slim
 FROM mhart/alpine-node:4.4.7
 
+ARG PROXY_URL
+RUN npm config set proxy $PROXY_URL
+RUN npm config set https-proxy $PROXY_URL
+
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
