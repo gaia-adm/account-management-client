@@ -1,0 +1,24 @@
+machine:
+  pre:
+    - echo 'DOCKER_OPTS="-s btrfs -e lxc -D --userland-proxy=false"' | sudo tee -a /etc/default/docker
+    - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci-cp-workaround'
+    - sudo chmod 0755 /usr/bin/docker
+  node:
+    version: 4.4.6
+  services:
+    - docker
+dependencies:
+  pre:
+    - sudo apt-get update && sudo apt-get install
+  override:
+    # build test image
+    - docker build -t gaiaadm/acmclient:test --build-arg "NODE=test" .
+    # build production image
+    - docker build -t gaiaadm/acmclient .
+    # tag production image with build build labels
+    - docker tag gaiaadm/acmclient gaiaadm/acmclient:$CIRCLE_BUILD_NUM-$CIRCLE_BRANCH
+    - docker tag gaiaadm/acmclient gaiaadm/acmclient:$CIRCLE_BRANCH
+test:
+  override:
+    - docker run -it --rm -e BACKEND_HOST=acmserver.skydns.local -e BACKEND_PORT=3100 gaiaadm/acmclient:test env
+    - docker run -it --rm -e BACKEND_HOST=acmserver.skydns.local -e BACKEND_PORT=3100 gaiaadm/acmclient env
