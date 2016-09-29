@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/gaia-adm/gaia-account-management-client.svg?style=svg)](https://circleci.com/gh/gaia-adm/gaia-account-management-client)
-
+[![](https://badge.imagelayers.io/gaiaadm/acmclient:latest.svg)](https://imagelayers.io/?images=gaiaadm/acmclient:latest 'Get your own badge on imagelayers.io')
 
 # gaia-account-management-client
 
