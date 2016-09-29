@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/gaia-adm/gaia-account-management-client.svg?style=svg)](https://circleci.com/gh/gaia-adm/gaia-account-management-client)
+
+
 # gaia-account-management-client
 
 This app is built with AngularJS, using webpack to bundle the source code, and [NodeJS](https://nodejs.org) with [Express](https://expressjs.com) to serve the bundle.
