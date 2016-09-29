@@ -22,3 +22,14 @@ test:
   override:
     - docker run -it --rm -e BACKEND_HOST=acmserver.skydns.local -e BACKEND_PORT=3100 gaiaadm/acmclient:test env
     - docker run -it --rm -e BACKEND_HOST=acmserver.skydns.local -e BACKEND_PORT=3100 gaiaadm/acmclient env
+deployment:
+  continuous:
+    branch: [master, develop, /.*feature_.*/]
+    commands:
+      # login to DockerHub
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      # push production image
+      - docker push gaiaadm/acmclient
+notify:
+  webhooks:
+    - url: https://webhook.master.gaiahub.io/wh/5a866f9b-98c9-438d-a8d4-53cf4ae9599c/4c310c8e220ee9bead74eece42ce0e109fd3535e
