@@ -9,10 +9,11 @@ var app = express();
 var isProduction = process.env.NODE_ENV === 'production';
 var port = process.env.CLIENT_PORT || 8080;
 var publicPath = path.resolve(__dirname, '../dist');
-
-app.use('/api', proxy({target: 'http://'+process.env.BACKEND_HOST+':'+process.env.BACKEND_PORT}));
-app.use('/auth', proxy({target: 'http://'+process.env.BACKEND_HOST+':'+process.env.BACKEND_PORT}));
-app.use('/sockjs', proxy({target: 'http://'+process.env.BACKEND_HOST+':'+process.env.BACKEND_PORT}));
+console.log('process.env.BACKEND_HOST: '+process.env.BACKEND_HOST);
+console.log('process.env.BACKEND_PORT: '+process.env.BACKEND_PORT);
+app.use('/acmc/api', proxy({target: 'http://'+process.env.BACKEND_HOST+':'+process.env.BACKEND_PORT, pathRewrite: {'^/acmc/api':'/acms/api'}, logLevel: 'debug'}));
+app.use('/acmc/auth', proxy({target: 'http://'+process.env.BACKEND_HOST+':'+process.env.BACKEND_PORT, pathRewrite: {'^/acmc/auth':'/acms/auth', logLevel: 'debug'}}));
+app.use('/acmc/sockjs', proxy({target: 'http://'+process.env.BACKEND_HOST+':'+process.env.BACKEND_PORT, pathRewrite: {'^/acmc/sockjs':'/acms/sockjs', logLevel: 'debug'}}));
 
 process.on('SIGINT', function(){
   process.exit();

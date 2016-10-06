@@ -144,7 +144,7 @@ angular.module(MODULE_NAME, [
 ])
   .config(routing)
   .constant("appConfig", {
-    "url": ""
+    "url": "/acmc"
   })
   .directive('app', app)
   .controller('AppCtrl', AppCtrl);
