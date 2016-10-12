@@ -22,7 +22,7 @@ process.on('SIGINT', function(){
 // We point to our static assets
 app.use(express.static(publicPath));
 app.get('*', function response(req, res) {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
+  res.sendFile(path.join(__dirname, '../dist/acmc/index.html'));
 });
 
 // And run the server
