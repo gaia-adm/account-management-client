@@ -1,18 +1,35 @@
+<script>
+    function getServerName() {
+        return location.protocol + '//' + location.hostname;
+    }
+</script>
 <div class="login">
-  <p>You are logged in as <i>{{::home.user.firstName}} {{::home.user.lastName}}.</i></p>
-  <p>
-    <b>Your Email Addresses</b>
+    <p>You are logged in as <i>{{::home.user.firstName}} {{::home.user.lastName}}.</i></p>
+    <p>
+        <b>Your Email Addresses</b>
     <ul>
-      <li ng-repeat="email in home.user.emails">
-        {{::email}}
-      </li>
+        <li ng-repeat="email in home.user.emails">
+            {{::email}}
+        </li>
     </ul>
-  </p>
-  <p><b>Your Accounts</b>
+    </p>
+    <p><b>Your Accounts</b>
     <ul>
-      <li ng-repeat="account in home.user.accounts">
-        {{::account.name}} — <i>{{::account.role_names.join(', ')}}</i>
-      </li>
+        <li ng-repeat="account in home.user.accounts">
+            {{::account.name}} — <i>{{::account.role_names.join(', ')}}</i>
+        </li>
     </ul>
-  </p>
+    </p>
+    <p>
+    <div ng-if="home.user.accounts.length>0">
+        <b>Actions</b>
+        <ul>
+            <li><a href={{::home.envi.proto}}//{{::home.envi.srv}}/>Gaia UI</a></li>
+            <div ng-if="home.user.accounts[0].role_names.indexOf('Account Admin')>-1">
+                <li><a href={{::home.envi.proto}}//{{::home.envi.srv}}:{{::home.envi.servicesPort}}/gau>Gaia
+                    Configuration</a></li>
+            </div>
+        </ul>
+    </div>
+    </p>
 </div>
