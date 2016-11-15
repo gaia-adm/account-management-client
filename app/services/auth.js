@@ -1,20 +1,22 @@
 "use strict";
 
-const AuthService = function($window, $q, $state, AuthUser) {
+const AuthService = function($window, $http, $q, $state, AuthUser, appConfig) {
   'ngInject';
   this.logout = function() {
     let _self = this;
     let gapi = $window.gapi;
-    if(gapi.auth2) {
-      _self.googleSignout(gapi.auth2.getAuthInstance());
-    } else {
-      gapi.load('auth2', function() {
-        let instance = gapi.auth2.init();
-        instance.then(function() {
-          _self.googleSignout(instance);
+    _self.gaiaLogout().then(function () {
+      if(gapi.auth2) {
+        _self.googleSignout(gapi.auth2.getAuthInstance());
+      } else {
+        gapi.load('auth2', function() {
+          let instance = gapi.auth2.init();
+          instance.then(function() {
+            _self.googleSignout(instance);
+          });
         });
-      });
-    }
+      }
+    });
   };
 
   this.googleSignout = function(authInstance) {
@@ -24,6 +26,13 @@ const AuthService = function($window, $q, $state, AuthUser) {
       $state.go('login');
     });
   };
+
+  this.gaiaLogout = function () {
+     return $http({
+      method: 'GET',
+      url: appConfig.url + '/auth/gaia.logout'
+    });
+  }
 };
 
 const AuthUser = function($cookies) {
