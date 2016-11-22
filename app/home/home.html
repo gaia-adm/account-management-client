@@ -14,22 +14,17 @@
     </ul>
     </p>
     <p><b>Your Accounts</b>
-    <ul>
-        <li ng-repeat="account in home.user.accounts">
-            {{::account.name}} — <i>{{::account.role_names.join(', ')}}</i>
-        </li>
+        <ul>
+            <li ng-repeat="account in home.user.accounts">
+                {{::account.name}} - <i>{{::account.role_names.replace(',',', ')}} </i>
+    <p>
+        <a href={{::home.envi.proto}}//{{::home.envi.srv}}/?st={{::account.account_id}} target="_blank">Open Gaia
+            UI</a><br>
+        <a href={{::home.envi.proto}}//{{::home.envi.srv}}:{{::home.envi.servicesPort}}/gau?st={{::account.account_id}} target="_blank">Open Gaia
+            Admin UI</a>
+    </p>
+    </li>
     </ul>
     </p>
-    <p>
-    <div ng-if="home.user.accounts.length>0">
-        <b>Actions</b>
-        <ul>
-            <li><a href={{::home.envi.proto}}//{{::home.envi.srv}}/>Gaia UI</a></li>
-            <div ng-if="home.user.accounts[0].role_names.indexOf('Account Admin')>-1">
-                <li><a href={{::home.envi.proto}}//{{::home.envi.srv}}:{{::home.envi.servicesPort}}/gau>Gaia
-                    Configuration</a></li>
-            </div>
-        </ul>
-    </div>
-    </p>
+
 </div>
