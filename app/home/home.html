@@ -16,7 +16,7 @@
     <p><b>Your Accounts</b>
         <ul>
             <li ng-repeat="account in home.user.accounts">
-                {{::account.name}} - <i>{{::account.role_names.replace(',',', ')}} </i>
+                {{::account.name}} - <i>{{::account.role_names.join(', ')}} </i>
     <p>
         <a href={{::home.envi.proto}}//{{::home.envi.srv}}/?st={{::account.account_id}} target="_blank">Open Gaia
             UI</a><br>
