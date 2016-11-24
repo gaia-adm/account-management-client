@@ -20,8 +20,10 @@
     <p>
         <a href={{::home.envi.proto}}//{{::home.envi.srv}}/?st={{::account.account_id}} target="_blank">Open Gaia
             UI</a><br>
-        <a href={{::home.envi.proto}}//{{::home.envi.srv}}:{{::home.envi.servicesPort}}/gau?st={{::account.account_id}} target="_blank">Open Gaia
-            Admin UI</a>
+    <div ng-if="account.role_ids.indexOf('1')>-1">
+        <a href={{::home.envi.proto}}//{{::home.envi.srv}}:{{::home.envi.servicesPort}}/gau?st={{::account.account_id}}
+           target="_blank">Open Gaia Admin UI</a>
+    </div>
     </p>
     </li>
     </ul>
